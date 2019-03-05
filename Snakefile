@@ -1,8 +1,9 @@
 include:
-	'config.py'
+	'config-lbi.py'
 
 rule all:
 	input:
+		WORK_SAMPLES,
 		# expand(FASTP_OUT + "{sample}_R{read_no}.fastq.gz.good",sample=SAMPLES ,read_no=['1', '2']),
 		# expand(WORK_DIR + "/trimmed/{sample_ips}_R{read_no}.fastq.gz.good",sample_ips=SAMPLE_IPS, read_no=['1','2']),
 		# expand(KALL_OUT + "{sample}", sample=SAMPLES),
@@ -11,13 +12,14 @@ rule all:
 		# expand(STAR + "output/{sample}/{sample}", sample=SAMPLES),
 		# expand(WORK_DIR + "02-SCALLOP/output/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES)
 
-#rule download_fastq:
+rule download_fastq:
 	# input:
-	# 	# names = lista_SRA
-	# shell: """
-	# 	fastq-dump {input.names} \
-	#	mv {output.names} WORK_DIR + "{output}"
-	#	"""
+	# 	raw = SAMPLES
+	params:
+		raw = SAMPLES
+	output: WORK_SAMPLES
+	shell:
+		"fastq-dump {params.raw} -O {output} --split-files"
 
 
 # rule fastp:

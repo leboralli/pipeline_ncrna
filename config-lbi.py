@@ -1,5 +1,7 @@
 #work
 WORK_DIR = "/work/tbLincRnas/users/leboralli/work/"
+WORK_SAMPLES = WORK_DIR + "raw"
+
 # SAMPLES_DIR = WORK_DIR + "data/concatenated_data/"
 LOGS = WORK_DIR +  "logs/"
 
@@ -8,8 +10,8 @@ STAR_INDEX = "/work/tbLincRnas/data/ref_gen/gencode_Human/"
 
 #Samples
 # SAMPLES_STAR = []
-SAMPLES = ['SRX4626238', 'SRX4626235', 'SRX4626231',
-            'SRX4626248', 'SRX4626246', 'SRX4626244']
+SAMPLES = ['SRR7770783', 'SRR7770780', 'SRR7770776',
+            'SRR7770793', 'SRR7770791', 'SRR7770789']
 
 #Trimmed files
 FASTP_DIR = WORK_DIR + "fastp/"
