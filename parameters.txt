@@ -1,0 +1,61 @@
+# ENCODE OPTIONS
+# ====== =======
+
+# Maximum number of multiple alignment allowed for a read: if exceeded, the read is considered
+# unmapped.
+outFilterMultimapNmax 20
+
+# Minimum intron length.
+alignIntronMin 20
+
+# Maximum intron length.
+alignIntronMax 10000000
+
+
+# USING SHARED MEMORY FOR THE GENOME INDEXES
+# ===== ====== ====== === === ====== =======
+
+# Shared memory is not used.
+genomeLoad NoSharedMemory
+
+# SAM: MULTIMAPPERS
+# ==== ============
+
+# Setting HI attributes, which enumerates multiple alignments of a read, to start with 0, such that
+# we can keep compatibility with downstream software such as Cufflinks and StringTie.
+outSAMattrIHstart 0
+
+limitBAMsortRAM 12000000000
+chimSegmentMin 40
+outFilterIntronMotifs RemoveNoncanonical
+outReadsUnmapped Fastx
+outSAMattributes NH HI AS nM
+outSAMtype BAM SortedByCoordinate
+outWigType bedGraph
+outWigStrand Stranded
+quantMode TranscriptomeSAM GeneCounts
+
+
+# SYSTEM
+# ======
+
+sysShell /bin/bash
+
+
+# RUN PARAMETERS
+# === ==========
+
+# Map reads.
+runMode alignReads
+
+# Permissions for the directories created at run-time: user-read/write/execute.
+runDirPerm User_RWX
+
+# Set the random number generator seed.
+runRNGseed 777
+
+# TWO-PASS MODE
+twopassMode Basic
+
+#Align Transcripts per Read N Max
+alignTranscriptsPerReadNmax 100000

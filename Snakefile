@@ -1,83 +1,166 @@
 include:
-	'config-lbi.py'
+	'config.py'
 
 rule all:
 	input:
-		WORK_SAMPLES,
-		# expand(FASTP_OUT + "{sample}_R{read_no}.fastq.gz.good",sample=SAMPLES ,read_no=['1', '2']),
-		# expand(WORK_DIR + "/trimmed/{sample_ips}_R{read_no}.fastq.gz.good",sample_ips=SAMPLE_IPS, read_no=['1','2']),
-		# expand(KALL_OUT + "{sample}", sample=SAMPLES),
-		# expand(STAR + "/input/{sample}_R{read_no}.fastq.gz.good.sym", sample=SAMPLES, read_no=['1', '2']),
-		# expand(STAR + "input/{sample}", sample=SAMPLES),
-		# expand(STAR + "output/{sample}/{sample}", sample=SAMPLES),
-		# expand(WORK_DIR + "02-SCALLOP/output/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES)
+		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
+		expand(FASTP_DIR + "{sample}R{read_no}.fastq.good",sample=SAMPLES ,read_no=['1', '2']), #fastp
+		directory(IDX_DIR), #index
+		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
+		expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
+		GTF_DIR + "path_samplesGTF.txt", #paths
+		# TACO_DIR, #taco
+		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
+		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
+		FEELNC_CODPOT, #feelnc_codpot
+		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
+		directory(SALMON_DIR), #salmon_index
+		expand(SALMON_DIR + "/output/{sample}", sample=SAMPLES)
 
-rule download_fastq:
-	# input:
-	# 	raw = SAMPLES
-	params:
-		raw = SAMPLES
-	output: WORK_SAMPLES
+# rule fastq_dump:
+# 	input:
+# 		samples = SAMPLES
+# 	output:
+# 		dir_out = SAMPLES_DIR + "{samples}"
+# 	shell:
+# 		"fastq-dump -I {input.samples} -o {output.dir_out}"
+
+rule fastp:
+	input:
+		R1= DATA_DIR + "{sample}R1_001.fastq.gz",
+		R2= DATA_DIR + "{sample}R2_001.fastq.gz"
+	output:
+		R1out= FASTP_DIR + "{sample}R1.fastq.good",
+		R2out= FASTP_DIR + "{sample}R2.fastq.good"
 	shell:
-		"fastq-dump {params.raw} -O {output} --split-files"
+		"fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} -h {log}"
 
+rule star_idx:
+	input:
+		fasta = FASTA_FILE,
+		gtf = GTF
+	output:
+		genome_dir = directory(IDX_DIR)
+	shell:
+		"STAR --runThreadN 20 \
+		--runMode genomeGenerate \
+		--genomeDir {output.genome_dir} \
+		--genomeFastaFiles {input.fasta} \
+		--sjdbGTFfile {input.gtf} --sjdbOverhang 99"
 
-# rule fastp:
-# 	input:
-# 		R1= SAMPLES_DIR + "{sample}_R1.fastq.gz",
-# 		R2= SAMPLES_DIR + "{sample}_R2.fastq.gz"
-# 	output:
-# 		R1out= FASTP_OUT + "{sample}_R1.fastq.gz.good",
-# 		R2out= FASTP_OUT + "{sample}_R2.fastq.gz.good"
-# 	log: WORK_DIR + "data/fastp/{sample}"
-# 	shell:
-# 		"fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} -h {log}"
-#
-# rule star:
-# 	input:
-# 		idx_star = STAR_INDEX,
-# 		R1 = FASTP_DIR + "{sample}_R1.fastq.sym",
-# 		R2 = FASTP_DIR + "{sample}_R2.fastq.sym",
-# 		parameters = STAR + "config/parameters.txt"
-# 	output:
-# 		out = STAR + "output/{sample}/{sample}"
-# 		#run_time = STAR + "log/star_run.time"
-# 	#threads: THREADS
-# 	# log: STAR_LOG
-# 	# benchmark: BENCHMARK + "star/{sample_star}"
-# 	shell:
-# 		"saveCommand STAR --runThreadN 40 --genomeDir {input.idx_star} \
-# 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {output.out}\
-# 		--parametersFiles {input.parameters} \
-# 		--quantMode TranscriptomeSAM GeneCounts"
+rule star:
+	input:
+		idx_star = IDX_DIR,
+		R1 = FASTP_DIR + "{sample}R1.fastq.good",
+		R2 = FASTP_DIR + "{sample}R2.fastq.good",
+		parameters = "parameters.txt"
+	params:
+		outdir = STAR_DIR + "output/{sample}/{sample}"
+	output:
+		out = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+		#run_time = STAR + "log/star_run.time"
+	#threads: THREADS
+	# log: STAR_LOG
+	# benchmark: BENCHMARK + "star/{sample_star}"
+	shell:
+		"STAR --runThreadN 40 --genomeDir {input.idx_star} \
+		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
+		--parametersFiles {input.parameters} \
+		--quantMode TranscriptomeSAM GeneCounts"
 
-# rule scallop:
-# 	input:
-# 		star_output = STAR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-# 	output:
-# 		scallop_output = WORK_DIR + "02-SCALLOP/output/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
-# 	shell:
-# 		"scallop -i {input.star_output} -o${output.scallop_output} \
-# 		--verbose 2 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
-# 		--min_splice_bundary_hits 2"
+rule scallop:
+	input:
+		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+	output:
+		scallop_output = SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
+	shell:
+		"scallop -i {input.star_output} -o {output.scallop_output} \
+		--verbose 2 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
+		--min_splice_bundary_hits 2"
 
-# # rule gffcompare:
+rule grep_gtf:
+	# input:
+	# 	list_gtf = directory(SCALLOP_DIR)
+	output:
+		paths = GTF_DIR + "path_samplesGTF.txt"
+	shell:
+		"find /home/leboralli/workdir/pipeline-v01/SCALLOPoutput | grep .gtf > {output.paths}"
+
+#taco gera um problema na hora de rodar, pq provavelmente o snakemake tenta criar
+#a pasta antes e o taco identifica como pasta já criada, talvez usar params
+# rule taco:
 # 	input:
-# 		scallop_gtf =
+# 		all_gtf = GTF_DIR + "path_samplesGTF.txt"
 # 	output:
-# 		gffcompare_output
+# 		taco_out = directory(TACO_DIR)
+# 	params:
+# 		taco_out = directory(TACO_DIR)
 # 	shell:
-# 		""
-#
-# rule come:
-# 	input:
-#
-# 	output:
-#
-# 	shell:
-#
-# rule salmon:
-#
-# rule rsem:
-#
-# rule edgeR:
+# 		"taco_run -v -p 8  -o {params.taco_out} \
+# 		--filter-min-expr 1 --gtf-expr-attr RPKM {input.all_gtf}"
+
+#Mudemos para o Stringtie-merge!
+rule stringtiemerge:
+	input:
+		samples_gtf = GTF_DIR + "path_samplesGTF.txt",
+		annotation = GTF
+	output:
+		merge_out = STRINGTIE_OUT + "assembly.gtf"
+	shell:
+		"stringtie --merge -G {input.annotation} -o {output.merge_out} -m 200 \
+		{input.samples_gtf}"
+
+rule feelnc_filter:
+	input:
+		assembly = STRINGTIE_OUT + "assembly.gtf",
+		annotation = GTF
+	# params:
+	# 	assembly = TACO_DIR + "assembly.gtf"
+	output:
+		candidate_lncrna = FEELNC_FILTER + "candidate_lncrna.gtf"
+	shell:
+		"FEELnc_filter.pl -i {input.assembly} -a {input.annotation} -o \
+		-b transcript_biotype=protein_coding --verbosity 1 --monoex=1 > {output.candidate_lncrna}"
+
+rule feelnc_codpot:
+	input:
+		candidates = FEELNC_FILTER + "candidate_lncrna.gtf",
+		# assembly = STRINGTIE_OUT + "assembly.gtf",
+		know_pc = PC,
+		know_lnc = LNCRNA,
+		genome = FASTA_FILE
+	output:
+		out_dir = FEELNC_CODPOT
+	shell:
+		"FEELnc_codpot.pl -i {input.candidates} -a {input.know_pc} -g {input.genome} \
+		-l {input.know_lnc} --outdir {output.out_dir}"
+
+rule feelnc_classifier:
+	input:
+		codpot = FEELNC_CODPOT,
+		annotation = GTF
+	output:
+		out_classifier = FEELNC_CLASSIFIER + "lncRNA_classes.txt"
+	shell:
+		"FEELnc_classifier.pl -i {input.codpot}candidate_lncrna.lncRNA.gtf -a {input.annotation} \
+		> {output.out_classifier}"
+
+rule salmon_index:
+	input:
+		transcripts_fa = TRANSCRPT
+	params:
+		index_out = directory(SALMON_DIR)
+	shell:
+		"salmon index -t {input.transcripts_fa} -i {params.index_out} -k 31"
+
+rule salmon_quantify:
+	input:
+		index = SALMON_DIR + "/gencode.v31.transcripts.index",
+		R1 = FASTP_DIR + "{sample}R1.fastq.good",
+		R2 = FASTP_DIR + "{sample}R2.fastq.good"
+	output:
+		quant_out = SALMON_DIR + "/output/{sample}"
+	shell:
+		"salmon quant -i {input.index} -l A \
+		-1 {input.R1} -2 {input.R2} --validateMappings -o {output.quant_out} \
+		-p 8 --validateMappings --numBootstraps 100 --seqBias --writeMappings"
