@@ -32,8 +32,11 @@ rule fastp:
 	output:
 		R1out= FASTP_DIR + "{sample}R1.fastq.good",
 		R2out= FASTP_DIR + "{sample}R2.fastq.good"
+	params:
+		log = FASTP_DIR + "{sample}.html"
 	shell:
-		"fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} -h {log}"
+		"fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
+		-h {params.log}"
 
 rule star_idx:
 	input:
@@ -42,7 +45,7 @@ rule star_idx:
 	output:
 		genome_dir = directory(IDX_DIR)
 	shell:
-		"STAR --runThreadN 20 \
+		"STAR --runThreadN 8 \
 		--runMode genomeGenerate \
 		--genomeDir {output.genome_dir} \
 		--genomeFastaFiles {input.fasta} \
@@ -63,7 +66,7 @@ rule star:
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
 	shell:
-		"STAR --runThreadN 40 --genomeDir {input.idx_star} \
+		"STAR --runThreadN 8 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts"
