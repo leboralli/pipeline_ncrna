@@ -1,6 +1,6 @@
 #Directories
-WORK_DIR = "/home/boralli/workdir/"
-DATA_DIR = "/home/boralli/data/"
+WORK_DIR = "/mnt/disks/workdir/"
+DATA_DIR = "/mnt/disks/data/"
 PIPE_V1 = WORK_DIR + "pipeline-v01/"
 
 IDX_DIR = PIPE_V1 + "index/"
