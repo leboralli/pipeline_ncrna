@@ -1,5 +1,5 @@
 #Directories
-WORK_DIR = "/mnt/disks/workdir/"
+WORK_DIR = "/mnt/disks/data/workdir/"
 DATA_DIR = "/mnt/disks/data/"
 PIPE_V1 = WORK_DIR + "pipeline-v01/"
 
