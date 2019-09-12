@@ -4,7 +4,7 @@ include:
 rule all:
 	input:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
-		expand(FASTP_DIR + "{sample}R{read_no}.fastq.good",sample=SAMPLES ,read_no=['1', '2']), #fastp
+		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		directory(IDX_DIR), #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
@@ -14,8 +14,8 @@ rule all:
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		FEELNC_CODPOT, #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
-		SALMON_DIR + "/gencode.v31.transcripts.index", #salmon_index
-		expand(SALMON_DIR + "/output/{sample}", sample=SAMPLES)
+		directory(SALMON_DIR), #salmon_index
+		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
 
 # rule fastq_dump:
 # 	input:
@@ -30,8 +30,8 @@ rule fastp:
 		R1= DATA_DIR + "{sample}R1_001.fastq",
 		R2= DATA_DIR + "{sample}R2_001.fastq"
 	output:
-		R1out= FASTP_DIR + "{sample}R1.fastq.good",
-		R2out= FASTP_DIR + "{sample}R2.fastq.good"
+		R1out= FASTP_DIR + "{sample}R1.fastq",
+		R2out= FASTP_DIR + "{sample}R2.fastq"
 	params:
 		log = FASTP_DIR + "{sample}.html"
 	shell:
@@ -54,8 +54,8 @@ rule star_idx:
 rule star:
 	input:
 		idx_star = IDX_DIR,
-		R1 = FASTP_DIR + "{sample}R1.fastq.good",
-		R2 = FASTP_DIR + "{sample}R2.fastq.good",
+		R1 = FASTP_DIR + "{sample}R1.fastq",
+		R2 = FASTP_DIR + "{sample}R2.fastq",
 		parameters = "parameters.txt"
 	params:
 		outdir = STAR_DIR + "output/{sample}/{sample}"
@@ -151,21 +151,21 @@ rule feelnc_classifier:
 rule salmon_index:
 	input:
 		transcripts_fa = TRANSCRPT
-	params:
-		index_out = directory(SALMON_DIR)
+	# params:
+	# 	index_out = directory(SALMON_DIR)
 	output:
-		out = SALMON_DIR + "/gencode.v31.transcripts.index"
+		out = directory(SALMON_DIR) # + "/gencode.v31.transcripts.index"
 	shell:
-		"salmon index -t {input.transcripts_fa} -i {params.index_out} -k 31"
+		"salmon index -t {input.transcripts_fa} -i {output.out} -k 31"
 
 rule salmon_quantify:
 	input:
-		index = SALMON_DIR + "/gencode.v31.transcripts.index",
-		R1 = FASTP_DIR + "{sample}R1.fastq.good",
-		R2 = FASTP_DIR + "{sample}R2.fastq.good"
+		index = SALMON_DIR, #+ "/gencode.v31.transcripts.index",
+		R1 = FASTP_DIR + "{sample}R1.fastq",
+		R2 = FASTP_DIR + "{sample}R2.fastq"
 	output:
-		quant_out = SALMON_DIR + "/output/{sample}"
+		quant_out = SALMON_DIR + "/output/{sample}_quant"
 	shell:
-		"salmon quant -i {input.index} -l A \
-		-1 {input.R1} -2 {input.R2} --validateMappings -o {output.quant_out} \
-		-p 8 --validateMappings --numBootstraps 100 --seqBias --writeMappings"
+		"salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
+		-o {output.quant_out} -p 8 --validateMappings \
+		--numBootstraps 100 --seqBias --writeMappings"
