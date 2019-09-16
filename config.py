@@ -31,4 +31,10 @@ GTF = DATA_DIR + "gencode.v31.annotation.gtf"
 PC = DATA_DIR + "gencode.v31.pc_transcripts.fa"
 LNCRNA = DATA_DIR + "gencode.v31.long_noncoding_RNAs.gtf"
 TRANSCRPT = DATA_DIR + "gencode.v31.transcripts.fa"
+
 #Log
+LOGS = PIPE_V1 + "LOGS/"
+FASTP_LOG = LOGS + "FASTP_LOG/"
+
+#BENCHMARK
+BENCHMARK_DIR = PIPE_V1 + "BENCHMARK"
