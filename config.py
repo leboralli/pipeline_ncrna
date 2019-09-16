@@ -1,6 +1,6 @@
 #Directories
-WORK_DIR = "/mnt/disks/data/workdir/"
-DATA_DIR = "/mnt/disks/data/"
+WORK_DIR = "/home/boralli/workdir/"
+DATA_DIR = WORK_DIR + "data/"
 PIPE_V1 = WORK_DIR + "pipeline-v01/"
 
 IDX_DIR = PIPE_V1 + "index/"
@@ -10,6 +10,7 @@ SCALLOP_DIR = PIPE_V1 + "SCALLOP"
 GTF_DIR = PIPE_V1 + "GTF/"
 # TACO_DIR = PIPE_V1 + "TACO_output/"
 STRINGTIE_OUT = PIPE_V1 + "STRINGTIE_MERGE/"
+GTF_TO_FASTA = PIPE_V1 + "GTF_FASTA"
 
 FEELNC_DIR = PIPE_V1 + "FEELNC/"
 FEELNC_FILTER = FEELNC_DIR + "FILTER/"
@@ -20,12 +21,12 @@ SALMON_DIR = PIPE_V1 + "SALMON"
 SALMON_INDEX = SALMON_DIR + "/gencode.v31.transcripts.index"
 
 #Samples
-SAMPLES = ['R3895_C101EACXX_CAGATC_L004_',
-    'R4255_D1AACACXX_GATCAG_L004_',
-    'R5871_C0CEWACXX_TGACCA_L003_']
+SAMPLES = ['R2809_D2A01ACXX_TAATGCGC_L005_', 'R2810_C00JVACXX_CGATGT_L001_',
+           'R2816_C0GTHACXX_ACTGAT_L007_', 'R2826_C00JVACXX_TGACCA_L001_',
+           'R2835_C0JYLACXX_TGACCA_L004_']
 
 #index
-FASTA_FILE = DATA_DIR + "GRCh38.p12.genome.fa"
+GENOME_FILE = DATA_DIR + "GRCh38.p12.genome.fa"
 GTF = DATA_DIR + "gencode.v31.annotation.gtf"
 PC = DATA_DIR + "gencode.v31.pc_transcripts.fa"
 LNCRNA = DATA_DIR + "gencode.v31.long_noncoding_RNAs.gtf"

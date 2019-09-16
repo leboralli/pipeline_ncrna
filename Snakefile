@@ -11,6 +11,7 @@ rule all:
 		GTF_DIR + "path_samplesGTF.txt", #paths
 		# TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
+		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		FEELNC_CODPOT, #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
@@ -27,8 +28,8 @@ rule all:
 
 rule fastp:
 	input:
-		R1= DATA_DIR + "{sample}R1_001.fastq",
-		R2= DATA_DIR + "{sample}R2_001.fastq"
+		R1= DATA_DIR + "{sample}R1_001.fastq.gz",
+		R2= DATA_DIR + "{sample}R2_001.fastq.gz"
 	output:
 		R1out= FASTP_DIR + "{sample}R1.fastq",
 		R2out= FASTP_DIR + "{sample}R2.fastq"
@@ -40,7 +41,7 @@ rule fastp:
 
 rule star_idx:
 	input:
-		fasta = FASTA_FILE,
+		fasta = GENOME_FILE,
 		gtf = GTF
 	output:
 		genome_dir = directory(IDX_DIR)
@@ -66,7 +67,7 @@ rule star:
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
 	shell:
-		"STAR --runThreadN 8 --genomeDir {input.idx_star} \
+		"STAR --runThreadN 20 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts"
@@ -113,6 +114,16 @@ rule stringtiemerge:
 		"stringtie --merge -G {input.annotation} -o {output.merge_out} -m 200 \
 		{input.samples_gtf}"
 
+#GTF to FASTA
+rule gtf_to_fasta:
+	input:
+		gtf_file = STRINGTIE_OUT + "assembly.gtf",
+		genome = GENOME_FILE
+	output:
+		merged_fasta = GTF_TO_FASTA + "assembly_fasta.fa"
+	shell:
+		"gffread -w {output.merged_fasta} -g {input.genome} {input.gtf_file}"
+
 rule feelnc_filter:
 	input:
 		assembly = STRINGTIE_OUT + "assembly.gtf",
@@ -150,7 +161,7 @@ rule feelnc_classifier:
 
 rule salmon_index:
 	input:
-		transcripts_fa = TRANSCRPT
+		transcripts_fa = GTF_TO_FASTA + "assembly_fasta.fa"
 	# params:
 	# 	index_out = directory(SALMON_DIR)
 	output:
