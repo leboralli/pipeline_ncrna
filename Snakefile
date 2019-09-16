@@ -142,7 +142,7 @@ rule feelnc_codpot:
 		# assembly = STRINGTIE_OUT + "assembly.gtf",
 		know_pc = PC,
 		know_lnc = LNCRNA,
-		genome = FASTA_FILE
+		genome = GENOME_FILE
 	output:
 		out_dir = FEELNC_CODPOT
 	shell:
