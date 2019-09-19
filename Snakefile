@@ -13,7 +13,7 @@ rule all:
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
 		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
-		FEELNC_CODPOT, #feelnc_codpot
+		directory(FEELNC_CODPOT), #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
 		directory(SALMON_DIR), #salmon_index
 		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
@@ -45,9 +45,9 @@ rule star_idx:
 		gtf = GTF
 	output:
 		genome_dir = directory(IDX_DIR)
-	threads: 20
+	#threads: 20
 	shell:
-		"STAR --runThreadN {threads} \
+		"STAR --runThreadN 20 \
 		--runMode genomeGenerate \
 		--genomeDir {output.genome_dir} \
 		--genomeFastaFiles {input.fasta} \
@@ -65,11 +65,10 @@ rule star:
 	output:
 		out = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 		#run_time = STAR + "log/star_run.time"
-	#threads: THREADS
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
 	shell:
-		"STAR --runThreadN {threads} --genomeDir {input.idx_star} \
+		"STAR --runThreadN 20 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts"
@@ -135,7 +134,7 @@ rule feelnc_filter:
 	output:
 		candidate_lncrna = FEELNC_FILTER + "candidate_lncrna.gtf"
 	shell:
-		"FEELnc_filter.pl -i {input.assembly} -a {input.annotation} -o \
+		"FEELnc_filter.pl -p 18 -i {input.assembly} -a {input.annotation} -o \
 		-b transcript_biotype=protein_coding --verbosity 1 --monoex=1 > {output.candidate_lncrna}"
 
 rule feelnc_codpot:
@@ -146,9 +145,9 @@ rule feelnc_codpot:
 		know_lnc = LNCRNA,
 		genome = GENOME_FILE
 	output:
-		out_dir = FEELNC_CODPOT
+		out_dir = directory(FEELNC_CODPOT)
 	shell:
-		"FEELnc_codpot.pl -i {input.candidates} -a {input.know_pc} -g {input.genome} \
+		"FEELnc_codpot.pl -p 18 -i {input.candidates} -a {input.know_pc} -g {input.genome} \
 		-l {input.know_lnc} --outdir {output.out_dir}"
 
 rule feelnc_classifier:
@@ -158,7 +157,7 @@ rule feelnc_classifier:
 	output:
 		out_classifier = FEELNC_CLASSIFIER + "lncRNA_classes.txt"
 	shell:
-		"FEELnc_classifier.pl -i {input.codpot}candidate_lncrna.lncRNA.gtf -a {input.annotation} \
+		"FEELnc_classifier.pl -p 18 -i {input.codpot}candidate_lncrna.lncRNA.gtf -a {input.annotation} \
 		> {output.out_classifier}"
 
 rule salmon_index:
@@ -180,5 +179,5 @@ rule salmon_quantify:
 		quant_out = SALMON_DIR + "/output/{sample}_quant"
 	shell:
 		"salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
-		-o {output.quant_out} -p 8 --validateMappings \
+		-o {output.quant_out} -p 18 --validateMappings \
 		--numBootstraps 100 --seqBias --writeMappings"
