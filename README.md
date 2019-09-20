@@ -12,3 +12,14 @@ was made in 02/09.
 The pipeline run from FASTP (quality control) until the lnc predictor (FEELnc).
 
 I start with $300
+
+-----------------------------------------------------------------
+Now I'm using the server NGS3, with 46gb RAM and 24 cores.
+
+Versions of the programs:
+FASTP - 0.20.0
+STAR - 2.7.2b
+Scallop - v0.10.4
+stringtie - 1.3.6
+FEElnc - v0.11
+salmon - 0.14.1
