@@ -157,7 +157,7 @@ rule feelnc_classifier:
 	output:
 		out_classifier = FEELNC_CLASSIFIER + "lncRNA_classes.txt"
 	shell:
-		"FEELnc_classifier.pl -p 18 -i {input.codpot}candidate_lncrna.lncRNA.gtf -a {input.annotation} \
+		"FEELnc_classifier.pl -i {input.codpot}candidate_lncrna.lncRNA.gtf -a {input.annotation} \
 		> {output.out_classifier}"
 
 rule salmon_index:
