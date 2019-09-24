@@ -23,3 +23,12 @@ Scallop - v0.10.4
 stringtie - 1.3.6
 FEElnc - v0.11
 salmon - 0.14.1
+snakemake - 5.6.0
+
+PYTHON IN LINC = 3.6.8
+PYTHON IN NGS3 = 3.7.3, so I need to create a conda env to run the pipeline
+
+----------------------------------------------------------------
+Error: /home/boralli/miniconda3/lib/R/bin/exec/R: error while loading shared
+libraries: libreadline.so.6: cannot open shared object file
+Trying to correct this error with -> conda install -c conda-forge readline=6.2
