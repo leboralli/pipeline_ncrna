@@ -1,5 +1,5 @@
 import synapseclient
-
+import shutil, os
 syn = synapseclient.Synapse()
 syn.login('leboralli','Eriol0284*')
 
@@ -14,4 +14,5 @@ for i in samples:
     print (i)
     i = syn.get(entity = i)
  # Get the path to the local copy of the data file
-    # filepath = i.path
+    filepath = i.path
+    shutil.move(filepath, "/media/pgt/New_Space/Leandro/data")
