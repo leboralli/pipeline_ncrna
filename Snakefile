@@ -16,7 +16,7 @@ rule all:
 		directory(FEELNC_CODPOT), #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
 		directory(SALMON_DIR), #salmon_index
-		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
+		expand(directory(SALMON_DIR + "/output/{sample}_quant"), sample=SAMPLES)
 
 # rule fastq_dump:
 # 	input:
@@ -176,7 +176,7 @@ rule salmon_quantify:
 		R1 = FASTP_DIR + "{sample}R1.fastq",
 		R2 = FASTP_DIR + "{sample}R2.fastq"
 	output:
-		quant_out = SALMON_DIR + "/output/{sample}_quant"
+		quant_out = directory(SALMON_DIR + "/output/{sample}_quant")
 	shell:
 		"salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
 		-o {output.quant_out} -p 18 --validateMappings \
