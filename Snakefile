@@ -45,9 +45,9 @@ rule star_idx:
 		gtf = GTF
 	output:
 		genome_dir = directory(IDX_DIR)
-	#threads: 20
+	threads: 18
 	shell:
-		"STAR --runThreadN 20 \
+		"STAR --runThreadN {threads} \
 		--runMode genomeGenerate \
 		--genomeDir {output.genome_dir} \
 		--genomeFastaFiles {input.fasta} \
