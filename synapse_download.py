@@ -5,7 +5,7 @@ syn.login('leboralli','Eriol0284*')
 
 #list of samples
 #controle
-samples = ['syn8231687', 'syn8231688', 'syn8238375', 'syn8238383']
+samples = ['syn8231683']
 
  # Obtain a pointer and download the data by loop
 for i in samples:
