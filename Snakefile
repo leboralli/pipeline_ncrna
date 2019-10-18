@@ -61,14 +61,14 @@ rule star:
 		parameters = "parameters.txt"
 	params:
 		outdir = STAR_DIR + "output/{sample}/{sample}"
-	threads: 16
+	threads: 18
 	output:
 		out = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 		#run_time = STAR + "log/star_run.time"
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
 	shell:
-		"STAR --runThreadN 20 --genomeDir {input.idx_star} \
+		"STAR --runThreadN {threads} --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts"
