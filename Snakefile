@@ -45,9 +45,9 @@ rule star_idx:
 		gtf = GTF
 	output:
 		genome_dir = directory(IDX_DIR)
-	threads: 18
+	# threads: 18
 	shell:
-		"STAR --runThreadN {threads} \
+		"STAR --runThreadN 18 \
 		--runMode genomeGenerate \
 		--genomeDir {output.genome_dir} \
 		--genomeFastaFiles {input.fasta} \
@@ -61,14 +61,14 @@ rule star:
 		parameters = "parameters.txt"
 	params:
 		outdir = STAR_DIR + "output/{sample}/{sample}"
-	threads: 18
+	# threads: 18
 	output:
 		out = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 		#run_time = STAR + "log/star_run.time"
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
 	shell:
-		"STAR --runThreadN {threads} --genomeDir {input.idx_star} \
+		"STAR --runThreadN 18 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts"
