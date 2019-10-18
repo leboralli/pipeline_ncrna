@@ -35,3 +35,6 @@ For the second test I will test patients vs control.
 
 SCZ: R2809, R2810, R2816, R2825, R2827
 Control: R2826, R2835, R2836, R2839, R2845
+
+After many problems, I started the pipeline for the second test in 18:17,
+18/10/2019
