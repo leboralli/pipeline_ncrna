@@ -61,7 +61,7 @@ rule star:
 		parameters = "parameters.txt"
 	params:
 		outdir = STAR_DIR + "output/{sample}/{sample}"
-	threads: 18
+	threads: 16
 	output:
 		out = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 		#run_time = STAR + "log/star_run.time"
