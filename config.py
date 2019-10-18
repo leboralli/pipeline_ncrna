@@ -1,5 +1,5 @@
 # from get_fastq import getListOfFastq, dirName
-import get_fastq as GF
+# import get_fastq as GF
 
 #TESTE
 TESTE_DATA = "/home/leboralli/Documents/workdir"
@@ -7,7 +7,7 @@ TESTE_DATA = "/home/leboralli/Documents/workdir"
 #Directories
 WORK_DIR = "/home/boralli/workdir/"
 DATA_DIR = WORK_DIR + "data/"
-PIPE_V1 = WORK_DIR + "pipeline-v01/"
+PIPE_V1 = WORK_DIR + "pipeline_teste2/"
 
 IDX_DIR = PIPE_V1 + "index/"
 FASTP_DIR = PIPE_V1 + "FASTP/"
@@ -36,7 +36,7 @@ SAMPLES = ['R2809_D2A01ACXX_TAATGCGC_L005_',
            'R2835_C0JYLACXX_TGACCA_L004_',
            'R2836_C3V3YACXX_CGGCTATG_L001_',
            'R2839_C0UH3ACXX_ATTACTCG_L001_R1_',
-           'R2845_C0J1FACXX_GCCAAT_L005_'          
+           'R2845_C0J1FACXX_GCCAAT_L005_'
            ]
 
 #index
@@ -54,8 +54,8 @@ FASTP_LOG = LOGS + "FASTP_LOG/"
 BENCHMARK_DIR = PIPE_V1 + "BENCHMARK"
 
 # Pegando lista de samples
-listOfFiles = GF.getListOfFastq(GF.dirName(TESTE_DATA))
-# print(listOfFiles)
-samples_fastq = GF.get_fastqFiles(listOfFiles)
-
-print(samples_fastq)
+# listOfFiles = GF.getListOfFastq(GF.dirName(TESTE_DATA))
+# # print(listOfFiles)
+# samples_fastq = GF.get_fastqFiles(listOfFiles)
+#
+# print(samples_fastq)

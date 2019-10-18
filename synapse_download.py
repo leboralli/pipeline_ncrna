@@ -4,9 +4,8 @@ syn = synapseclient.Synapse()
 syn.login('leboralli','Eriol0284*')
 
 #list of samples
-samples = ['syn8238085', 'syn8238091', 'syn8230825', 'syn8230829',
-            'syn8234562', 'syn8234563', 'syn8232353', 'syn8232354',
-            'syn8229041', 'syn8229087']
+#controle
+samples = ['syn8231687', 'syn8231688', 'syn8238375', 'syn8238383']
 
  # Obtain a pointer and download the data by loop
 for i in samples:
@@ -15,4 +14,4 @@ for i in samples:
     i = syn.get(entity = i)
  # Get the path to the local copy of the data file
     filepath = i.path
-    shutil.move(filepath, "/media/pgt/New_Space/Leandro/data")
+    shutil.move(filepath, "/home/boralli/workdir/data")
