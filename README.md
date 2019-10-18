@@ -29,6 +29,9 @@ PYTHON IN LINC = 3.6.8
 PYTHON IN NGS3 = 3.7.3, so I need to create a conda env to run the pipeline
 
 ----------------------------------------------------------------
-Error: /home/boralli/miniconda3/lib/R/bin/exec/R: error while loading shared
-libraries: libreadline.so.6: cannot open shared object file
-Trying to correct this error with -> conda install -c conda-forge readline=6.2
+
+Test was a success, if we ignore the non statistical significance.
+For the second test I will test patients vs control.
+
+SCZ: R2809, R2810, R2816, R2825, R2827
+Control: R2826, R2835, R2836, R2839, R2845
