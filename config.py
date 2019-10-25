@@ -60,8 +60,8 @@ FASTP_LOG = LOGS + "FASTP_LOG/"
 BENCHMARK_DIR = PIPE_V1 + "BENCHMARK"
 
 # Pegando lista de samples
-listOfFiles = GF.getListOfFastq(GF.dirName("/home/leboralli/Documents/Aulas/Tutorial-Linux-1/arquivos_testes"))
-print(listOfFiles)
-samples_fastq = GF.get_fastqFiles(listOfFiles)
-#
-print(samples_fastq)
+# listOfFiles = GF.getListOfFastq(GF.dirName("/home/leboralli/Documents/Aulas/Tutorial-Linux-1/arquivos_testes"))
+# print(listOfFiles)
+# samples_fastq = GF.get_fastqFiles(listOfFiles)
+# #
+# print(samples_fastq)
