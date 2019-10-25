@@ -1,6 +1,11 @@
 # from get_fastq import getListOfFastq, dirName
-# import get_fastq as GF
+import get_fastq as GF
 
+listOfFiles = GF.getListOfFastq(GF.dirName("/home/leboralli/Documents/Aulas/Tutorial-Linux-1/arquivos_testes"))
+# print(listOfFiles)
+samples_fastq = GF.get_fastqFiles(listOfFiles)
+#
+# print(samples_fastq)
 #TESTE
 TESTE_DATA = "/home/leboralli/Documents/workdir"
 
@@ -27,18 +32,19 @@ SALMON_DIR = PIPE_V1 + "SALMON"
 SALMON_INDEX = SALMON_DIR + "/gencode.v31.transcripts.index"
 
 #Samples
-SAMPLES = ['R2809_D2A01ACXX_TAATGCGC_L005_',
-           'R2810_C00JVACXX_CGATGT_L001_',
-           'R2816_C0GTHACXX_ACTGAT_L007_',
-           'R2825_C00JVACXX_TTAGGC_L001_',
-           'R2826_C00JVACXX_TGACCA_L001_',
-           'R2827_C0JYLACXX_TTAGGC_L005_',
-           'R2835_C0JYLACXX_TGACCA_L004_',
-           'R2836_C3V3YACXX_CGGCTATG_L001_',
-           'R2839_C0UH3ACXX_ATTACTCG_L001_',
-           'R2845_C0J1FACXX_GCCAAT_L005_'
-           ]
+# SAMPLES = ['R2809_D2A01ACXX_TAATGCGC_L005_',
+#            'R2810_C00JVACXX_CGATGT_L001_',
+#            'R2816_C0GTHACXX_ACTGAT_L007_',
+#            'R2825_C00JVACXX_TTAGGC_L001_',
+#            'R2826_C00JVACXX_TGACCA_L001_',
+#            'R2827_C0JYLACXX_TTAGGC_L005_',
+#            'R2835_C0JYLACXX_TGACCA_L004_',
+#            'R2836_C3V3YACXX_CGGCTATG_L001_',
+#            'R2839_C0UH3ACXX_ATTACTCG_L001_',
+#            'R2845_C0J1FACXX_GCCAAT_L005_'
+#            ]
 
+SAMPLES = samples_fastq
 #index
 GENOME_FILE = DATA_DIR + "GRCh38.p12.genome.fa"
 GTF = DATA_DIR + "gencode.v31.annotation.gtf"
@@ -54,8 +60,8 @@ FASTP_LOG = LOGS + "FASTP_LOG/"
 BENCHMARK_DIR = PIPE_V1 + "BENCHMARK"
 
 # Pegando lista de samples
-# listOfFiles = GF.getListOfFastq(GF.dirName(TESTE_DATA))
-# # print(listOfFiles)
-# samples_fastq = GF.get_fastqFiles(listOfFiles)
+listOfFiles = GF.getListOfFastq(GF.dirName("/home/leboralli/Documents/Aulas/Tutorial-Linux-1/arquivos_testes"))
+print(listOfFiles)
+samples_fastq = GF.get_fastqFiles(listOfFiles)
 #
-# print(samples_fastq)
+print(samples_fastq)

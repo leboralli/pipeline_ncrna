@@ -32,11 +32,14 @@ def get_fastqFiles(data):
     # print(data)
     for arquivo in data:
         if 'fastq' in arquivo:
+            # print(arquivo)
             regexList = re.findall('.+L00\d_', arquivo)
-            print(regexList)
+            # print(regexList)
             fastqList.append(regexList)
+            # print(fastqList)
     for sublista in fastqList:
         for item in sublista:
             flat_list.append(item)
+    # print (flat_list)
     return flat_list
 # print(fastqList)
