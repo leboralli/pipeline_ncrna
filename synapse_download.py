@@ -5,12 +5,12 @@ syn.login('leboralli','Eriol0284*')
 
 #list of samples
 #controle
-# samples = ['syn8239554', 'syn8239555', 'syn8231270', 'syn8231271',
-#             'syn8230808', 'syn8230810', 'syn8229813', 'syn8229817']
-samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
+samples = ['syn8239554', 'syn8239555', 'syn8231270', 'syn8231271',
+            'syn8230808', 'syn8230810', 'syn8229813', 'syn8229817']
+# samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
 
  # Obtain a pointer and download the data by loop
-for i in samples_file:
+for i in samples:
     # syn8238085 = syn.get(entity='syn8238085')
     print (i)
     i = syn.get(entity = str(i))
