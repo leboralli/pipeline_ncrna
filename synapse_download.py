@@ -5,16 +5,24 @@ syn.login('leboralli','Eriol0284*')
 
 #list of samples
 #controle
-# samples = ['syn8239554', 'syn8239555', 'syn8231270', 'syn8231271',
-#             'syn8230808', 'syn8230810', 'syn8229813', 'syn8229817']
+samples = ['syn8241621', 'syn8241622', 'syn8231515', 'syn8231516', 'syn8229621',
+           'syn8229622', 'syn8231026', 'syn8231032', 'syn8232245', 'syn8232249',
+           'syn8231735', 'syn8231736', 'syn8228259', 'syn8228263', 'syn8231564',
+           'syn8231565', 'syn8234601', 'syn8234606', 'syn8234388', 'syn8234392',
+           'syn8239833', 'syn8239835', 'syn8238853', 'syn8238855', 'syn8231340',
+           'syn8231341', 'syn8231288', 'syn8231293', 'syn8228250', 'syn8228252',
+           'syn8228173', 'syn8228179', 'syn8232765', 'syn8232777', 'syn8239312',
+           'syn8239326', 'syn8232140', 'syn8232143', 'syn8231207', 'syn8231208',
+           'syn8229705', 'syn8229707', 'syn8229339', 'syn8229367', 'syn8229434',
+           'syn8229445', 'syn8238697', 'syn8238698']
 # samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
 # samples_read = samples_file.read()
  # Obtain a pointer and download the data by loop
-with open("/home/boralli/workdir/data/list_samples.txt", "r") as f:
-    for line in f:
+# with open("/home/boralli/workdir/data/list_samples.txt", "r") as f:
+for i in samples:
     # syn8238085 = syn.get(entity='syn8238085')
-        print (line)
-        i = syn.get(str(line))
+        print (i)
+        i = syn.get(entity = i)
      # Get the path to the local copy of the data file
         filepath = i.path
         shutil.move(filepath, "/home/boralli/workdir/data")
