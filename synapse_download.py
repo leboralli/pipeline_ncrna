@@ -13,7 +13,7 @@ samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
 for i in samples_file:
     # syn8238085 = syn.get(entity='syn8238085')
     print (i)
- #    i = syn.get(entity = i)
- # # Get the path to the local copy of the data file
- #    filepath = i.path
- #    shutil.move(filepath, "/home/boralli/workdir/data")
+    i = syn.get(entity = i)
+ # Get the path to the local copy of the data file
+    filepath = i.path
+    shutil.move(filepath, "/home/boralli/workdir/data")
