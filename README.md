@@ -38,3 +38,16 @@ Control: R2826, R2835, R2836, R2839, R2845
 
 After many problems, I started the pipeline for the second test in 18:17,
 18/10/2019
+
+---------------------------------------------------------------
+Ok, now I need to test my pipeline with more samples, because the statistical
+test in edgeR demands a good pool of samples.
+The samples:
+
+SCZ: R2809, R2810, R2816, R2825, R2827, R2860, R2866, R2867
+Control: R2826, R2835, R2836, R2839, R2845, R2897
+
+I need to download this samples:
+SCZ - R2828, R2831, R2834, R2840, R2841, R2868, R2885, R2886, R2889, R2890, R2893
+Control - R2855, R2857, R2869, R2874, R2894, R2895, R2905, R2906, R2907, R2912,
+          R2944, R2945, R2947, R2954
