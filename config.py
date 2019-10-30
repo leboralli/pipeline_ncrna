@@ -12,23 +12,23 @@ TESTE_DATA = "/home/leboralli/Documents/workdir"
 #Directories
 WORK_DIR = "/home/boralli/workdir/"
 DATA_DIR = WORK_DIR + "data/"
-PIPE_V1 = WORK_DIR + "pipeline_teste2/"
+PIPE = WORK_DIR + "pipeline_v3/"
 
-IDX_DIR = PIPE_V1 + "index/"
-FASTP_DIR = PIPE_V1 + "FASTP/"
-STAR_DIR = PIPE_V1 + "STAR/"
-SCALLOP_DIR = PIPE_V1 + "SCALLOP"
-GTF_DIR = PIPE_V1 + "GTF/"
-# TACO_DIR = PIPE_V1 + "TACO_output/"
-STRINGTIE_OUT = PIPE_V1 + "STRINGTIE_MERGE/"
-GTF_TO_FASTA = PIPE_V1 + "GTF_FASTA/"
+IDX_DIR = PIPE + "index/"
+FASTP_DIR = PIPE + "FASTP/"
+STAR_DIR = PIPE + "STAR/"
+SCALLOP_DIR = PIPE + "SCALLOP"
+GTF_DIR = PIPE + "GTF/"
+# TACO_DIR = PIPE + "TACO_output/"
+STRINGTIE_OUT = PIPE + "STRINGTIE_MERGE/"
+GTF_TO_FASTA = PIPE + "GTF_FASTA/"
 
-FEELNC_DIR = PIPE_V1 + "FEELNC/"
+FEELNC_DIR = PIPE + "FEELNC/"
 FEELNC_FILTER = FEELNC_DIR + "FILTER/"
 FEELNC_CODPOT = FEELNC_DIR + "CODPOT/"
 FEELNC_CLASSIFIER = FEELNC_DIR + "CLASSIFIER/"
 
-SALMON_DIR = PIPE_V1 + "SALMON"
+SALMON_DIR = PIPE + "SALMON"
 SALMON_INDEX = SALMON_DIR + "/gencode.v31.transcripts.index"
 
 #Samples
@@ -53,11 +53,11 @@ LNCRNA = DATA_DIR + "gencode.v31.long_noncoding_RNAs.gtf"
 TRANSCRPT = DATA_DIR + "gencode.v31.transcripts.fa"
 
 #Log
-LOGS = PIPE_V1 + "LOGS/"
+LOGS = PIPE + "LOGS/"
 FASTP_LOG = LOGS + "FASTP_LOG/"
 
 #BENCHMARK
-BENCHMARK_DIR = PIPE_V1 + "BENCHMARK"
+BENCHMARK_DIR = PIPE + "BENCHMARK"
 
 # Pegando lista de samples
 # listOfFiles = GF.getListOfFastq(GF.dirName("/home/leboralli/Documents/Aulas/Tutorial-Linux-1/arquivos_testes"))

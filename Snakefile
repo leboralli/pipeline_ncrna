@@ -136,7 +136,7 @@ rule feelnc_filter:
 		candidate_lncrna = FEELNC_FILTER + "candidate_lncrna.gtf"
 	shell:
 		"FEELnc_filter.pl -p 18 -i {input.assembly} -a {input.annotation} -o \
-		-b transcript_biotype=protein_coding --verbosity 1 --monoex=1 > {output.candidate_lncrna}"
+		--verbosity 1 --monoex=1 > {output.candidate_lncrna}"
 
 rule feelnc_codpot:
 	input:
@@ -149,7 +149,7 @@ rule feelnc_codpot:
 		out_dir = directory(FEELNC_CODPOT)
 	shell:
 		"FEELnc_codpot.pl -p 18 -i {input.candidates} -a {input.know_pc} -g {input.genome} \
-		-l {input.know_lnc} --outdir {output.out_dir}"
+		-l {input.know_lnc} --outdir {output.out_dir} --learnorftype=3 -v 1"
 
 rule feelnc_classifier:
 	input:
