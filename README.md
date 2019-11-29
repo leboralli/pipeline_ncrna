@@ -51,3 +51,22 @@ I need to download this samples:
 SCZ - R2828, R2831, R2834, R2840, R2841, R2868, R2885, R2886, R2889, R2890, R2893
 Control - R2855, R2857, R2869, R2874, R2894, R2895, R2905, R2906, R2907, R2912,
           R2944, R2945, R2947, R2954
+
+NEWS: the test was a success, but I still need a lot of samples.
+------------------------------------------------------------------
+I will change the lncRNA predictor, because I'm not confident with FEElnc.
+And I will use two packages, combining the outputs, for more confident results.
+
+The packages: CPAT and Slncky.
+
+But I'm thinking in change a lot of things in my pipeline, using the paper
+"The Long Noncoding RNA Landscape in Amygdala Tissues from Schizophrenia Patients"
+as a parameter.
+
+With the changes:
+Fastp -> STAR -> medTIN (median transcript integrity number, for RNA integrity) ->
+Scallop (LNCipedia, in the paper was used genomic regions with at least
+reads coverage 2.5) -> Stringtie-merge (reference annotation - LNCipedia) ->
+gffcompare (reference annotation - LNCipedia, for identify novel transcripts) ->
+slncky + CPAT (using the novel transcripts - considered only the consensus results) ->
+add novel lncRNAs in the reference annotation (LNCipedia)

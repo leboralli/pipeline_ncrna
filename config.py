@@ -49,8 +49,9 @@ SAMPLES = samples_fastq
 GENOME_FILE = DATA_DIR + "GRCh38.p12.genome.fa"
 GTF = DATA_DIR + "gencode.v31.annotation.gtf"
 PC = DATA_DIR + "gencode.v31.pc_transcripts.fa"
-LNCRNA = DATA_DIR + "gencode.v31.long_noncoding_RNAs.gtf"
+# LNCRNA = DATA_DIR + "gencode.v31.long_noncoding_RNAs.gtf"
 TRANSCRPT = DATA_DIR + "gencode.v31.transcripts.fa"
+LNCRNA = DATA_DIR + "lncipedia_5_2_hg38.gtf"
 
 #Log
 LOGS = PIPE + "LOGS/"

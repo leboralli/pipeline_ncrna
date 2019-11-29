@@ -8,9 +8,11 @@ rule all:
 		directory(IDX_DIR), #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
+		# rm_star, #rm_star
 		GTF_DIR + "path_samplesGTF.txt", #paths
 		# TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
+		out_prefix = gffcompare_out_, #gffcompare
 		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		directory(FEELNC_CODPOT), #feelnc_codpot
@@ -81,8 +83,14 @@ rule scallop:
 		scallop_output = SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
 	shell:
 		"scallop -i {input.star_output} -o {output.scallop_output} \
-		--verbose 2 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
-		--min_splice_bundary_hits 2"
+		--verbose 1 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
+		--min_splice_bundary_hits 2 --min_transcript_coverage 2.5"
+
+rule rm_star:
+	input:
+		directory = STAR_DIR + "{sample}"
+	shell:
+		"rm -rf {input.directory}"
 
 rule grep_gtf:
 	# input:
@@ -115,6 +123,16 @@ rule stringtiemerge:
 	shell:
 		"stringtie --merge -G {input.annotation} -o {output.merge_out} -m 200 \
 		{input.samples_gtf}"
+
+rule gffcompare:
+	input:
+		assembly = STRINGTIE_OUT + "assembly.gtf",
+		annotation = GTF
+	output:
+		out_prefix = "gffcompare_out_"
+	shell:
+		"gffcompare -r {input.annotation} -o {output.out_prefix} \
+		-i {input.assembly}"
 
 #GTF to FASTA
 rule gtf_to_fasta:
