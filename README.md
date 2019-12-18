@@ -57,7 +57,7 @@ NEWS: the test was a success, but I still need a lot of samples.
 I will change the lncRNA predictor, because I'm not confident with FEElnc.
 And I will use two packages, combining the outputs, for more confident results.
 
-The packages: CPAT and Slncky.
+The packages: CPAT and Slncky (or FEElnc). Maybe another one, like DeepALnc
 
 But I'm thinking in change a lot of things in my pipeline, using the paper
 "The Long Noncoding RNA Landscape in Amygdala Tissues from Schizophrenia Patients"
@@ -70,3 +70,8 @@ reads coverage 2.5) -> Stringtie-merge (reference annotation - LNCipedia) ->
 gffcompare (reference annotation - LNCipedia, for identify novel transcripts) ->
 slncky + CPAT (using the novel transcripts - considered only the consensus results) ->
 add novel lncRNAs in the reference annotation (LNCipedia)
+
+------------------------------------------------------------------------
+Need more 10 samples of case and control:
+SCZ: R2896, R2901, R2948, R2961, R2962, R3005, R3015, R3016, R3030, R3036
+Control: R2958, R2980, R2983, R2996, R2999, R3002, R3009, R3014, R3017, R3050
