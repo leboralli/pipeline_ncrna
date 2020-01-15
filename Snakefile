@@ -12,7 +12,7 @@ rule all:
 		GTF_DIR + "path_samplesGTF.txt", #paths
 		# TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
-		out_prefix = gffcompare_out_, #gffcompare
+		out_prefix = "gffcompare_out_", #gffcompare
 		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		directory(FEELNC_CODPOT), #feelnc_codpot
