@@ -3,7 +3,7 @@ import get_fastq as GF
 
 listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
 # print(listOfFiles)
-samples_fastq = GF.get_fastqFiles(listOfFiles)
+# samples_fastq = GF.get_fastqFiles(listOfFiles)
 
 print(samples_fastq)
 #TESTE
@@ -45,6 +45,7 @@ SALMON_INDEX = SALMON_DIR + "/gencode.v31.transcripts.index"
 #            ]
 
 SAMPLES = samples_fastq
+print(SAMPLES)
 #index
 GENOME_FILE = DATA_DIR + "GRCh38.p12.genome.fa"
 GTF = DATA_DIR + "gencode.v31.annotation.gtf"
