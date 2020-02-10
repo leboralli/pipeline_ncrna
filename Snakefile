@@ -12,7 +12,7 @@ rule all:
 		GTF_DIR + "path_samplesGTF.txt", #paths
 		# TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
-		"gffcompare_out_", #gffcompare
+		# "gffcompare_out_", #gffcompare
 		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		directory(FEELNC_CODPOT), #feelnc_codpot
@@ -86,13 +86,13 @@ rule scallop:
 		--verbose 1 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
 		--min_splice_bundary_hits 2 --min_transcript_coverage 2.5"
 
-rule rm_star:
-	input:
-		directory = STAR_DIR + "output/{sample}"
-	output:
-		except_file = "{sample}Aligned.sortedByCoord.out.bam"
-	shell:
-		"rm -v !({input.directory}{output.except_file})"
+# rule rm_star:
+# 	input:
+# 		directory = STAR_DIR + "output/{sample}"
+# 	output:
+# 		except_file = "{sample}Aligned.sortedByCoord.out.bam"
+# 	shell:
+# 		"rm -v !({input.directory}{output.except_file})"
 
 rule grep_gtf:
 	# input:
