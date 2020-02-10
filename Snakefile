@@ -90,7 +90,7 @@ rule rm_star:
 	input:
 		directory = STAR_DIR + "output/{sample}/"
 	output:
-		except_file = "{sample}.Aligned.sortedByCoord.out.bam"
+		except_file = "{sample}Aligned.sortedByCoord.out.bam"
 	shell:
 		"rm -v !({input.directory}{output.except_file})"
 
