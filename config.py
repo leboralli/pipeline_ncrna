@@ -3,9 +3,9 @@ import get_fastq as GF
 
 listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
 # print(listOfFiles)
-# samples_fastq = GF.get_fastqFiles(listOfFiles)
+samples_fastq = GF.get_fastqFiles(listOfFiles)
 
-print(samples_fastq)
+# print(samples_fastq)
 #TESTE
 TESTE_DATA = "/home/leboralli/Documents/workdir"
 
