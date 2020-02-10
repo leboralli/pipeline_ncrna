@@ -10,8 +10,8 @@ samples_fastq = GF.get_fastqFiles(listOfFiles)
 TESTE_DATA = "/home/leboralli/Documents/workdir"
 
 #Directories
-WORK_DIR = "/home/boralli/workdir/"
-DATA_DIR = WORK_DIR + "data/"
+WORK_DIR = "/homelocal/boralli/workdir/"
+DATA_DIR =  "/home/boralli/workdir/data/"
 PIPE = WORK_DIR + "pipeline_v3/"
 
 IDX_DIR = PIPE + "index/"
