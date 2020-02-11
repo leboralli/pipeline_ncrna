@@ -6,7 +6,7 @@ rule all:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		directory(IDX_DIR), #index
-		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
+		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		# expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
 		# expand("{sample}.Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		# GTF_DIR + "path_samplesGTF.txt", #paths
@@ -55,26 +55,26 @@ rule star_idx:
 		--genomeFastaFiles {input.fasta} \
 		--sjdbGTFfile {input.gtf} --sjdbOverhang 99"
 
-# rule star:
-# 	input:
-# 		idx_star = IDX_DIR,
-# 		R1 = FASTP_DIR + "{sample}R1.fastq",
-# 		R2 = FASTP_DIR + "{sample}R2.fastq",
-# 		parameters = "parameters.txt"
-# 	params:
-# 		outdir = STAR_DIR + "output/{sample}/{sample}"
-# 	# threads: 18
-# 	output:
-# 		out = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-# 		#run_time = STAR + "log/star_run.time"
-# 	# log: STAR_LOG
-# 	# benchmark: BENCHMARK + "star/{sample_star}"
-# 	shell:
-# 		"STAR --runThreadN 12 --genomeDir {input.idx_star} \
-# 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
-# 		--parametersFiles {input.parameters} \
-# 		--quantMode TranscriptomeSAM GeneCounts \
-# 		--genomeChrBinNbits 12"
+rule star:
+	input:
+		idx_star = IDX_DIR,
+		R1 = FASTP_DIR + "{sample}R1.fastq",
+		R2 = FASTP_DIR + "{sample}R2.fastq",
+		parameters = "parameters.txt"
+	params:
+		outdir = STAR_DIR + "output/{sample}/{sample}"
+	# threads: 18
+	output:
+		out = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+		#run_time = STAR + "log/star_run.time"
+	# log: STAR_LOG
+	# benchmark: BENCHMARK + "star/{sample_star}"
+	shell:
+		"STAR --runThreadN 12 --genomeDir {input.idx_star} \
+		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
+		--parametersFiles {input.parameters} \
+		--quantMode TranscriptomeSAM GeneCounts \
+		--genomeChrBinNbits 12"
 #
 # rule scallop:
 # 	input:
