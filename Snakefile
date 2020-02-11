@@ -7,7 +7,7 @@ rule all:
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
-		# expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
+		expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
 		# expand("{sample}.Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		# GTF_DIR + "path_samplesGTF.txt", #paths
 		# # TACO_DIR, #taco
@@ -75,16 +75,16 @@ rule star:
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
 		--genomeChrBinNbits 12"
-#
-# rule scallop:
-# 	input:
-# 		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-# 	output:
-# 		scallop_output = SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
-# 	shell:
-# 		"scallop -i {input.star_output} -o {output.scallop_output} \
-# 		--verbose 1 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
-# 		--min_splice_bundary_hits 2 --min_transcript_coverage 2.5"
+
+rule scallop:
+	input:
+		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+	output:
+		scallop_output = SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
+	shell:
+		"scallop -i {input.star_output} -o {output.scallop_output} \
+		--verbose 1 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
+		--min_splice_bundary_hits 2 --min_transcript_coverage 2.5"
 #
 # # rule rm_star:
 # # 	input:
