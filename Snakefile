@@ -5,7 +5,7 @@ rule all:
 	input:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
-		directory(IDX_DIR), #index
+		IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		# expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
 		# expand("{sample}.Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
