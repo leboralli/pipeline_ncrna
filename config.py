@@ -10,7 +10,7 @@ samples_fastq = GF.get_fastqFiles(listOfFiles)
 TESTE_DATA = "/home/leboralli/Documents/workdir"
 
 #Directories
-WORK_DIR = "/home/boralli/workdir/"
+WORK_DIR = "/homelocal/boralli/workdir/"
 DATA_DIR =  "/home/boralli/workdir/data/"
 PIPE = WORK_DIR + "pipeline_v3/"
 
@@ -29,7 +29,7 @@ FEELNC_CODPOT = FEELNC_DIR + "CODPOT/"
 FEELNC_CLASSIFIER = FEELNC_DIR + "CLASSIFIER/"
 
 SALMON_DIR = PIPE + "SALMON"
-SALMON_INDEX = SALMON_DIR + "/gencode.v31.transcripts.index"
+SALMON_INDEX = SALMON_DIR + "/gencode.v33.transcripts.index"
 
 #Samples
 # SAMPLES = ['R2809_D2A01ACXX_TAATGCGC_L005_',
@@ -47,11 +47,11 @@ SALMON_INDEX = SALMON_DIR + "/gencode.v31.transcripts.index"
 SAMPLES = samples_fastq
 print(SAMPLES)
 #index
-GENOME_FILE = DATA_DIR + "GRCh38.p12.genome.fa"
-GTF = DATA_DIR + "gencode.v31.annotation.gtf"
-PC = DATA_DIR + "gencode.v31.pc_transcripts.fa"
+GENOME_FILE = DATA_DIR + "GRCh38.p13.genome.fa"
+GTF = DATA_DIR + "gencode.v33.annotation.gtf"
+PC = DATA_DIR + "gencode.v33.pc_transcripts.fa"
 # LNCRNA = DATA_DIR + "gencode.v31.long_noncoding_RNAs.gtf"
-TRANSCRPT = DATA_DIR + "gencode.v31.transcripts.fa"
+TRANSCRPT = DATA_DIR + "gencode.v33.transcripts.fa"
 LNCRNA = DATA_DIR + "lncipedia_5_2_hg38.gtf"
 
 #Log
