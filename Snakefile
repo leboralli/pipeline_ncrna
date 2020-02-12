@@ -100,7 +100,7 @@ rule grep_gtf:
 	output:
 		paths = GTF_DIR + "path_samplesGTF.txt"
 	shell:
-		"find /home/boralli/workdir/pipeline-v01/SCALLOPoutput | grep .gtf > {output.paths}"
+		"find {input.list_gtf} | grep .gtf > {output.paths}"
 
 #taco gera um problema na hora de rodar, pq provavelmente o snakemake tenta criar
 #a pasta antes e o taco identifica como pasta já criada, talvez usar params
