@@ -8,7 +8,7 @@ rule all:
 		IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
-		expand("{sample}.Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
+		# expand("{sample}.Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		GTF_DIR + "path_samplesGTF.txt", #paths
 		# TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
@@ -86,13 +86,13 @@ rule scallop:
 		--verbose 1 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
 		--min_splice_bundary_hits 2 --min_transcript_coverage 2.5"
 
-rule rm_star:
-	input:
-		directory = directory(STAR_DIR + "output/{sample}/")
-	output:
-		except_file = "{sample}Aligned.sortedByCoord.out.bam"
-	shell:
-		"rm -v !({input.directory}{output.except_file})"
+# rule rm_star:
+# 	input:
+# 		directory = directory(STAR_DIR + "output/{sample}/")
+# 	output:
+# 		except_file = "{sample}Aligned.sortedByCoord.out.bam"
+# 	shell:
+# 		"rm -v !({input.directory}{output.except_file})"
 
 rule grep_gtf:
 	input:
