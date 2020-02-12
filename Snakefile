@@ -80,7 +80,7 @@ rule scallop:
 	input:
 		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 	output:
-		scallop_output = SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
+		scallop_output = SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
 	shell:
 		"scallop -i {input.star_output} -o {output.scallop_output} \
 		--verbose 1 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
