@@ -7,7 +7,7 @@ rule all:
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
-		expand(SCALLOP_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
+		expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
 		# expand("{sample}.Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		# GTF_DIR + "path_samplesGTF.txt", #paths
 		# # TACO_DIR, #taco
