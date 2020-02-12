@@ -75,3 +75,8 @@ add novel lncRNAs in the reference annotation (LNCipedia)
 Need more 10 samples of case and control:
 SCZ: R2896, R2901, R2948, R2961, R2962, R3005, R3015, R3016, R3030, R3036
 Control: R2958, R2980, R2983, R2996, R2999, R3002, R3009, R3014, R3017, R3050
+
+------------------------------------------------------------------------
+11/02/2020
+Co-expression between lncRNA and mRNA -> Pearson's correlation coefficient!
+Each lncRNAs analyzed with each mRNA.  
