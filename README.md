@@ -80,3 +80,9 @@ Control: R2958, R2980, R2983, R2996, R2999, R3002, R3009, R3014, R3017, R3050
 11/02/2020
 Co-expression between lncRNA and mRNA -> Pearson's correlation coefficient!
 Each lncRNAs analyzed with each mRNA.  
+
+------------------------------------------------------------------------
+Now I need to verify the reads of each sample! 100M reads is the objective
+
+And I created a main.py, the main file which is going to control my pipeline.
+Maybe I want to create differents Snakefiles... I don't know.
