@@ -18,7 +18,6 @@ os.system('snakemake -np')
 
 # cleaning the temp files
 for smp in list_samples:
-    os.system('rm -v !(' + str(star_directory) + str(smp)) + '/' +
-        str(smp) + 'Aligned.sortedByCoord.out.bam)' #STAR directory
+    os.system('rm -v !(' + str(star_directory) + str(smp)) + '/' + str(smp) + 'Aligned.sortedByCoord.out.bam)' #STAR directory
     # os.system('rm -v !(' + str(star_directory) + str(smp)) + '/' +
     #     str(smp) + 'Aligned.sortedByCoord.out.bam)' #STAR directory
