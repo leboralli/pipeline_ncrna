@@ -34,7 +34,7 @@ syn.login('leboralli','Eriol0284*')
 #             'syn8238878', 'syn8238879', 'syn8238676', 'syn8238677',
 #             'syn8229611', 'syn8229613', 'syn8238763', 'syn8238767']
 
-samples = ['syn8230524']
+samples = ['syn8231289']
 # samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
 # samples_read = samples_file.read()
  # Obtain a pointer and download the data by loop
