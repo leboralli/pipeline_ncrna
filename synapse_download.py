@@ -23,16 +23,18 @@ syn.login('leboralli','Eriol0284*')
 #            'syn8238730', 'syn8234191', 'syn8234195', 'syn8238878', 'syn8238879',
 #            'syn8238676', 'syn8238677', 'syn8229611', 'syn8229613', 'syn8238763',
 #            'syn8238767']
-samples = [ 'syn8238287', 'syn8238291',
-            'syn8230523', 'syn8230529', 'syn8228450', 'syn8228459',
-            'syn8238215', 'syn8238216', 'syn8237787', 'syn8237798',
-            'syn8234414', 'syn8234420', 'syn8231114', 'syn8231118',
-            'syn8232866', 'syn8232874', 'syn8231110', 'syn8231111',
-            'syn8231238', 'syn8231239', 'syn8231976', 'syn8231989',
-            'syn8235550', 'syn8235557', 'syn8230315', 'syn8230321',
-            'syn8238729', 'syn8238730', 'syn8234191', 'syn8234195',
-            'syn8238878', 'syn8238879', 'syn8238676', 'syn8238677',
-            'syn8229611', 'syn8229613', 'syn8238763', 'syn8238767']
+# samples = [ 'syn8238287', 'syn8238291',
+#             'syn8230523', 'syn8230529', 'syn8228450', 'syn8228459',
+#             'syn8238215', 'syn8238216', 'syn8237787', 'syn8237798',
+#             'syn8234414', 'syn8234420', 'syn8231114', 'syn8231118',
+#             'syn8232866', 'syn8232874', 'syn8231110', 'syn8231111',
+#             'syn8231238', 'syn8231239', 'syn8231976', 'syn8231989',
+#             'syn8235550', 'syn8235557', 'syn8230315', 'syn8230321',
+#             'syn8238729', 'syn8238730', 'syn8234191', 'syn8234195',
+#             'syn8238878', 'syn8238879', 'syn8238676', 'syn8238677',
+#             'syn8229611', 'syn8229613', 'syn8238763', 'syn8238767']
+
+samples = ['syn8230524']
 # samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
 # samples_read = samples_file.read()
  # Obtain a pointer and download the data by loop
