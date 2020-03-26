@@ -88,7 +88,7 @@ rule scallop:
 
 rule rm_star:
 	input:
-		directory = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+		file = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 	# params:
 	# 	except_file = "{sample}Aligned.sortedByCoord.out.bam"
 	output:
