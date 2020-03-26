@@ -94,7 +94,7 @@ rule rm_star:
 	output:
 		file_to_maintain = "{sample}Aligned.sortedByCoord.out.bam"
 	shell:
-		"rm -v !({input.directory})"
+		"rm !({input.directory})"
 
 rule grep_gtf:
 	input:
