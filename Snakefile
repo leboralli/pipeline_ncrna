@@ -8,7 +8,7 @@ rule all:
 		IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
-		expand("{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
+		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		GTF_DIR + "path_samplesGTF.txt", #paths
 		# # TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
@@ -92,7 +92,7 @@ rule rm_star:
 	# params:
 	# 	except_file = "{sample}Aligned.sortedByCoord.out.bam"
 	output:
-		file_to_maintain = "{sample}Aligned.sortedByCoord.out.bam"
+		file_to_maintain = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 	shell:
 		"rm !({input.file})"
 
