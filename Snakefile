@@ -88,13 +88,13 @@ rule scallop:
 
 rule rm_star:
 	input:
-		directory = STAR_DIR + "output/{sample}/"
-	params:
-		except_file = "{sample}Aligned.sortedByCoord.out.bam"
+		directory = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+	# params:
+	# 	except_file = "{sample}Aligned.sortedByCoord.out.bam"
 	output:
 		file_to_maintain = "{sample}Aligned.sortedByCoord.out.bam"
 	shell:
-		"rm -v !({input.directory}{output.except_file})"
+		"rm -v !({input.directory})"
 
 rule grep_gtf:
 	input:
