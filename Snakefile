@@ -7,9 +7,9 @@ rule all:
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
-		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
+		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
-		
+
 		GTF_DIR + "path_samplesGTF.txt", #paths
 		# # TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
@@ -40,7 +40,7 @@ rule fastp:
 	message: "Executando o programa FASTP"
 	shell:
 		"fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
-		-h {log}"
+		-h {log} -j {log}"
 
 rule star_idx:
 	input:
@@ -71,21 +71,24 @@ rule star:
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
 	shell:
-		"STAR --runThreadN 12 --genomeDir {input.idx_star} \
+		"""
+		STAR --runThreadN 12 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
-		--genomeChrBinNbits 12"
+		--genomeChrBinNbits 12
+		find {wildcard.STAR_DIR} -type f ! -name '*sortedByCoord.out.bam*'
+		"""
 
-rule rm_star:
-	input:
-		file = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-	# params:
-	# 	except_file = "{sample}Aligned.sortedByCoord.out.bam"
-	output:
-		file_to_maintain = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-	shell:
-		"rm !({input.file})"
+# rule rm_star:
+# 	input:
+# 		file = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+# 	# params:
+# 	# 	except_file = "{sample}Aligned.sortedByCoord.out.bam"
+# 	output:
+# 		file_to_maintain = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+# 	shell:
+# 		"rm !({input.file})"
 
 rule scallop:
 	input:
