@@ -86,3 +86,7 @@ Now I need to verify the reads of each sample! 100M reads is the objective
 
 And I created a main.py, the main file which is going to control my pipeline.
 Maybe I want to create differents Snakefiles... I don't know.
+
+------------------------------------------------------------------------
+13/04/2020
+Now I will download 50 samples of Male case vs 77 male control. Without suicides
