@@ -56,7 +56,19 @@ samples_control = ['syn8228540', 'syn8228541', 'syn8231050', 'syn8231051',
                     'syn8230307', 'syn8230308', 'syn8230436', 'syn8230437',
                     'syn8230669', 'syn8230670', 'syn8230497', 'syn8230498',
                     'syn8230778', 'syn8230779', 'syn8229295', 'syn8229301',
-                    ]
+                    'syn8231227', 'syn8231228', 'syn8228338', 'syn8228342',
+                    'syn8231372', 'syn8231374', 'syn8231277', 'syn8231280',
+                    'syn8228045', 'syn8228046', 'syn8229546', 'syn8229547',
+                    'syn8229683', 'syn8229687', 'syn8230724', 'syn8230725',
+                    'syn8229849', 'syn8229853', 'syn8231321', 'syn8231322',
+                    'syn8230472', 'syn8230473', 'syn8230410', 'syn8230411',
+                    'syn8231353', 'syn8231358', 'syn8231087', 'syn8231088',
+                    'syn8230234', 'syn8230252', 'syn8231124', 'syn8231129',
+                    'syn8231070', 'syn8231071', 'syn8228026', 'syn8228028',
+                    'syn8229884', 'syn8229891', 'syn8228201', 'syn8228202',
+                    'syn8229702', 'syn8229704', 'syn8229219', 'syn8229275',
+                    'syn8230910', 'syn8230914', 'syn8231019', 'syn8231020',
+                    'syn8228439', 'syn8228447', ]
 # samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
 # samples_read = samples_file.read()
  # Obtain a pointer and download the data by loop
