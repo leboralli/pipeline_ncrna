@@ -73,7 +73,17 @@ samples_control = ['syn8228540', 'syn8228541', 'syn8231050', 'syn8231051',
 # samples_read = samples_file.read()
  # Obtain a pointer and download the data by loop
 # with open("/home/boralli/workdir/data/list_samples.txt", "r") as f:
-for i in samples_scz:
+
+samples_single = ['syn8230529']
+# for i in samples_scz:
+#     # syn8238085 = syn.get(entity='syn8238085')
+#         print (i)
+#         i = syn.get(entity = i)
+#      # Get the path to the local copy of the data file
+#         filepath = i.path
+#         shutil.move(filepath, "/home/boralli/workdir/data")
+
+for i in samples_single:
     # syn8238085 = syn.get(entity='syn8238085')
         print (i)
         i = syn.get(entity = i)
