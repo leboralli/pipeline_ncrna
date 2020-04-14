@@ -106,7 +106,7 @@ rule scallop:
 
 rule grep_gtf:
 	input:
-		list_gtf = SCALLOP_DIR
+		list_gtf = directory(SCALLOP_DIR)
 	output:
 		paths = GTF_DIR + "path_samplesGTF.txt"
 	shell:
