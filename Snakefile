@@ -33,8 +33,8 @@ rule fastp:
 	input:
 		R1= DATA_DIR + "{sample}R1_001.fastq.gz",
 		R2= DATA_DIR + "{sample}R2_001.fastq.gz",
-		fastp_dir = FASTP_DIR,
-		name_sample = "{sample}"
+		# fastp_dir = FASTP_DIR,
+		# name_sample = "{sample}"
 	output:
 		R1out= FASTP_DIR + "{sample}R1.fastq",
 		R2out= FASTP_DIR + "{sample}R2.fastq"
@@ -44,7 +44,7 @@ rule fastp:
 		"""
 		fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
 		-h {log} -j {log}
-		find {input.fastp_dir} -type f -name '{input.name_sample}*'
+		find {wildcards.FASTP_DIR} -type f -name '{wildcards.sample}*'
 		"""
 
 # rule star_idx:
