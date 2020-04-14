@@ -37,7 +37,7 @@ rule fastp:
 		R1out= FASTP_DIR + "{sample}R1.fastq",
 		R2out= FASTP_DIR + "{sample}R2.fastq"
 	params:
-		fastp_dir = FASTP_DIR,
+		data_dir = DATA_DIR,
 		name_sample = "{sample}"
 	log: FASTP_LOG + "{sample}.html"
 	message: "Executando o programa FASTP"
@@ -45,7 +45,7 @@ rule fastp:
 		"""
 		fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
 		-h {log} -j {log}
-		find {params.fastp_dir} -type f -name '{params.name_sample}*'
+		find {params.data_dir} -type f -name '{params.name_sample}* -delete'
 		"""
 
 # rule star_idx:
@@ -86,7 +86,7 @@ rule star:
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
 		--genomeChrBinNbits 12
-		find {params.star_dir} -type f ! -name '{params.star_sample}sortedByCoord.out.bam'
+		find {params.star_dir} -type f ! -name '{params.star_sample}Aligned.sortedByCoord.out.bam -delete'
 		"""
 
 # rule rm_star:
