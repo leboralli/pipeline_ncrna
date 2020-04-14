@@ -41,12 +41,11 @@ rule fastp:
 		name_sample = "{sample}"
 	log: FASTP_LOG + "{sample}.html"
 	message: "Executando o programa FASTP"
-	shell:
-		"""
-		fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
-		-h {log} -j {log}
-		find {params.data_dir} -type f -name '{params.name_sample}* -delete'
-		"""
+	run:
+		shell('fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
+		-h {log} -j {log}')
+		shell("find {params.data_dir} -type f -name '{params.name_sample}* -delete' ")
+
 
 # rule star_idx:
 # 	input:
@@ -79,15 +78,14 @@ rule star:
 		#run_time = STAR + "log/star_run.time"
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
-	shell:
-		"""
-		STAR --runThreadN 12 --genomeDir {input.idx_star} \
+	run:
+		shell("STAR --runThreadN 12 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
-		--genomeChrBinNbits 12
-		find {params.star_dir} -type f ! -name '{params.star_sample}Aligned.sortedByCoord.out.bam -delete'
-		"""
+		--genomeChrBinNbits 12")
+		shell("find {params.star_dir} -type f ! -name '{params.star_sample}Aligned.sortedByCoord.out.bam' -delete")
+
 
 # rule rm_star:
 # 	input:
