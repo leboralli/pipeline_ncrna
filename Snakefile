@@ -67,7 +67,7 @@ rule star:
 		R1 = FASTP_DIR + "{sample}R1.fastq",
 		R2 = FASTP_DIR + "{sample}R2.fastq",
 		parameters = "parameters.txt",
-		star_dir = STAR_DIR
+		# star_dir = STAR_DIR
 	params:
 		outdir = STAR_DIR + "output/{sample}/{sample}"
 	# threads: 18
@@ -83,7 +83,7 @@ rule star:
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
 		--genomeChrBinNbits 12
-		find {input.star_dir} -type f ! -name '{sample}sortedByCoord.out.bam'
+		find {wildcards.STAR_DIR} -type f ! -name '{wildcards.sample}sortedByCoord.out.bam'
 		"""
 
 # rule rm_star:
