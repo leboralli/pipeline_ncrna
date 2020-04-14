@@ -33,7 +33,8 @@ rule fastp:
 	input:
 		R1= DATA_DIR + "{sample}R1_001.fastq.gz",
 		R2= DATA_DIR + "{sample}R2_001.fastq.gz",
-		fastp_dir = FASTP_DIR
+		fastp_dir = FASTP_DIR,
+		name_sample = "{sample}"
 	output:
 		R1out= FASTP_DIR + "{sample}R1.fastq",
 		R2out= FASTP_DIR + "{sample}R2.fastq"
@@ -43,7 +44,7 @@ rule fastp:
 		"""
 		fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
 		-h {log} -j {log}
-		find {input.fastp_dir} -type f -name '{sample}*'
+		find {input.fastp_dir} -type f -name '{input.name_sample}*'
 		"""
 
 # rule star_idx:
@@ -65,7 +66,8 @@ rule star:
 		idx_star = IDX_DIR,
 		R1 = FASTP_DIR + "{sample}R1.fastq",
 		R2 = FASTP_DIR + "{sample}R2.fastq",
-		parameters = "parameters.txt"
+		parameters = "parameters.txt",
+		star_dir = STAR_DIR
 	params:
 		outdir = STAR_DIR + "output/{sample}/{sample}"
 	# threads: 18
@@ -81,7 +83,7 @@ rule star:
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
 		--genomeChrBinNbits 12
-		find {wildcard.STAR_DIR} -type f ! -name '{sample}sortedByCoord.out.bam'
+		find {input.star_dir} -type f ! -name '{sample}sortedByCoord.out.bam'
 		"""
 
 # rule rm_star:
