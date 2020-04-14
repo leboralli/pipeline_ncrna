@@ -12,9 +12,10 @@ TESTE_DATA = "/home/leboralli/Documents/workdir"
 #Directories
 WORK_DIR = "/homelocal/boralli/workdir/"
 DATA_DIR =  "/home/boralli/workdir/data/"
-PIPE = WORK_DIR + "pipeline_v3/"
+PIPE = WORK_DIR + "pipeline_v4/"
+PIPE_OLD = WORK_DIR + "pipeline_v3/"
 
-IDX_DIR = PIPE + "index/"
+IDX_DIR = PIPE_OLD + "index/"
 FASTP_DIR = PIPE + "FASTP/"
 STAR_DIR = PIPE + "STAR/"
 SCALLOP_DIR = PIPE + "SCALLOP"

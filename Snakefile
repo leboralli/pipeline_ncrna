@@ -5,7 +5,7 @@ rule all:
 	input:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
-		IDX_DIR, #index
+		# IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
@@ -39,22 +39,25 @@ rule fastp:
 	log: FASTP_LOG + "{sample}.html"
 	message: "Executando o programa FASTP"
 	shell:
-		"fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
-		-h {log} -j {log}"
+		"""
+		fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
+		-h {log} -j {log}
+		find {wildcard.FASTP_DIR} -type f -name '{sample}*'
+		"""
 
-rule star_idx:
-	input:
-		fasta = GENOME_FILE,
-		gtf = GTF
-	output:
-		genome_dir = directory(IDX_DIR)
-	# threads: 18
-	shell:
-		"STAR --runThreadN 18 \
-		--runMode genomeGenerate \
-		--genomeDir {output.genome_dir} \
-		--genomeFastaFiles {input.fasta} \
-		--sjdbGTFfile {input.gtf} --sjdbOverhang 99"
+# rule star_idx:
+# 	input:
+# 		fasta = GENOME_FILE,
+# 		gtf = GTF
+# 	output:
+# 		genome_dir = directory(IDX_DIR)
+# 	# threads: 18
+# 	shell:
+# 		"STAR --runThreadN 18 \
+# 		--runMode genomeGenerate \
+# 		--genomeDir {output.genome_dir} \
+# 		--genomeFastaFiles {input.fasta} \
+# 		--sjdbGTFfile {input.gtf} --sjdbOverhang 99"
 
 rule star:
 	input:
@@ -77,7 +80,7 @@ rule star:
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
 		--genomeChrBinNbits 12
-		find {wildcard.STAR_DIR} -type f ! -name '*sortedByCoord.out.bam*'
+		find {wildcard.STAR_DIR} -type f ! -name '{sample}sortedByCoord.out.bam'
 		"""
 
 # rule rm_star:
@@ -206,6 +209,9 @@ rule salmon_quantify:
 	output:
 		quant_out = directory(SALMON_DIR + "/output/{sample}_quant")
 	shell:
-		"salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
+		"""
+		salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
 		-o {output.quant_out} -p 18 --validateMappings \
-		--numBootstraps 100 --seqBias --writeMappings"
+		--numBootstraps 100 --seqBias --writeMappings
+		find {wildcard.FASTP_DIR} -type f ! -name '{sample}*'
+		"""
