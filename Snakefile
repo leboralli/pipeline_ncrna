@@ -44,7 +44,7 @@ rule fastp:
 	run:
 		shell('fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
 		-h {log} -j {log}')
-		shell("find {params.data_dir} -type f -name '{params.name_sample}* -delete' ")
+		shell("find {params.data_dir} -type f -name '{params.name_sample}*' -delete ")
 
 
 # rule star_idx:
@@ -84,7 +84,7 @@ rule star:
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
 		--genomeChrBinNbits 12")
-		shell("find {params.star_dir} -type f ! -name '{params.star_sample}Aligned.sortedByCoord.out.bam' -delete")
+		# shell("find {params.star_dir} -type f ! -name '{params.star_sample}Aligned.sortedByCoord.out.bam' -delete")
 
 
 # rule rm_star:
