@@ -8,7 +8,7 @@ rule all:
 		# IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
-		# expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
+		expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
 		#
 		# GTF_DIR + "path_samplesGTF.txt", #paths
 		# # # TACO_DIR, #taco
@@ -97,15 +97,15 @@ rule star:
 # 	shell:
 # 		"rm !({input.file})"
 
-# rule scallop:
-# 	input:
-# 		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-# 	output:
-# 		scallop_output = SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
-# 	shell:
-# 		"scallop -i {input.star_output} -o {output.scallop_output} \
-# 		--verbose 1 --min_transcript_lenght_base 200 --min_mapping_quality 255 \
-# 		--min_splice_bundary_hits 2 --min_transcript_coverage 2.5"
+rule scallop:
+	input:
+		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+	output:
+		scallop_output = SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
+	shell:
+		"scallop -i {input.star_output} -o {output.scallop_output} \
+		--verbose 1 --min_transcript_lenght_base 200 \
+		--min_splice_bundary_hits 2 "
 #
 #
 # rule grep_gtf:
