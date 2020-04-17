@@ -8,8 +8,8 @@ rule all:
 		# IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
-		expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
-		# GTF_DIR + "path_samplesGTF.txt", #paths
+		# expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
+		expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES)
 		# TACO_DIR, #taco
 		# STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
 		# # "gffcompare_out_", #gffcompare
@@ -96,16 +96,24 @@ rule star:
 # 	shell:
 # 		"rm !({input.file})"
 
-rule scallop:
+# rule scallop:
+# 	input:
+# 		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
+# 	output:
+# 		scallop_output = SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
+# 	run:
+# 		shell("scallop -i {input.star_output} -o {output.scallop_output} \
+# 		--verbose 1 --min_transcript_lenght_base 200 \
+# 		--min_splice_bundary_hits 2 ")
+
+rule stringtie:
 	input:
 		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 	output:
-		scallop_output = SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
+		stringtie_output = STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
 	run:
-		shell("scallop -i {input.star_output} -o {output.scallop_output} \
-		--verbose 1 --min_transcript_lenght_base 200 \
-		--min_splice_bundary_hits 2 ")
-#
+		shell("stringtie {input.star_output} -o {output.stringtie_output} \
+		-v -p 12 ")
 #
 # rule grep_gtf:
 # 	input:
