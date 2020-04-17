@@ -9,9 +9,8 @@ rule all:
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
 		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
-		#
 		# GTF_DIR + "path_samplesGTF.txt", #paths
-		# # # TACO_DIR, #taco
+		# TACO_DIR, #taco
 		# STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
 		# # "gffcompare_out_", #gffcompare
 		# GTF_TO_FASTA + "assembly_fasta.fa", #gffread
@@ -102,10 +101,10 @@ rule scallop:
 		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
 	output:
 		scallop_output = SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
-	shell:
-		"scallop -i {input.star_output} -o {output.scallop_output} \
+	run:
+		shell("scallop -i {input.star_output} -o {output.scallop_output} \
 		--verbose 1 --min_transcript_lenght_base 200 \
-		--min_splice_bundary_hits 2 "
+		--min_splice_bundary_hits 2 ")
 #
 #
 # rule grep_gtf:
