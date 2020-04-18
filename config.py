@@ -2,9 +2,10 @@
 import get_fastq as GF
 
 listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
+list_fastpFiles = GF.getListOfFastq(GF.dirName("/homelocal/boralli/workdir/pipeline_v4/FASTP"))
 # print(listOfFiles)
 samples_fastq = GF.get_fastqFiles(listOfFiles)
-
+samples_fastq_fastp = GF.getListOfFastq(list_fastpFiles)
 # print(samples_fastq)
 #TESTE
 TESTE_DATA = "/home/leboralli/Documents/workdir"
@@ -47,6 +48,7 @@ SALMON_INDEX = SALMON_DIR + "/gencode.v33.transcripts.index"
 #            ]
 
 SAMPLES = samples_fastq
+SAMPLES_FP = list_fastpFiles
 # print(SAMPLES)
 #index
 GENOME_FILE = DATA_DIR + "GRCh38.p13.genome.fa"
