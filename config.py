@@ -5,7 +5,7 @@ listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
 list_fastpFiles = GF.getListOfFastq(GF.dirName("/homelocal/boralli/workdir/pipeline_v4/FASTP"))
 # print(listOfFiles)
 samples_fastq = GF.get_fastqFiles(listOfFiles)
-samples_fastq_fastp = GF.getListOfFastq(list_fastpFiles)
+samples_fastq_fastp = GF.get_fastqFiles(list_fastpFiles)
 # print(samples_fastq)
 #TESTE
 TESTE_DATA = "/home/leboralli/Documents/workdir"
