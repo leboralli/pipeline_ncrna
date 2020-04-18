@@ -11,7 +11,7 @@ rule all:
 		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		# expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
 		expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES),
-		GTF_DIR + "path_samplesGTF.txt",
+		# GTF_DIR + "path_samplesGTF.txt",
 		# TACO_DIR, #taco
 		# STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
 		# # "gffcompare_out_", #gffcompare
@@ -117,13 +117,13 @@ rule stringtie:
 		shell("stringtie {input.star_output} -o {output.stringtie_output} \
 		-v -p 12 ")
 #
-rule grep_gtf:
-	input:
-		list_gtf = STRINGTIE_DIR
-	output:
-		paths = GTF_DIR + "path_samplesGTF.txt"
-	shell:
-		"find {input.list_gtf} | grep .gtf > {output.paths}"
+# rule grep_gtf:
+# 	input:
+# 		list_gtf = STRINGTIE_DIR
+# 	output:
+# 		paths = GTF_DIR + "path_samplesGTF.txt"
+# 	shell:
+# 		"find {input.list_gtf} | grep .gtf > {output.paths}"
 #
 # #taco gera um problema na hora de rodar, pq provavelmente o snakemake tenta criar
 # #a pasta antes e o taco identifica como pasta já criada, talvez usar params
