@@ -117,13 +117,13 @@ rule stringtie:
 		shell("stringtie {input.star_output} -o {output.stringtie_output} \
 		-v -p 12 ")
 #
-# rule grep_gtf:
-# 	input:
-# 		list_gtf = STRINGTIE_DIR
-# 	output:
-# 		paths = GTF_DIR + "path_samplesGTF.txt"
-# 	shell:
-# 		"find {input.list_gtf} | grep .gtf > {output.paths}"
+rule grep_gtf:
+	input:
+		list_gtf = STRINGTIE_DIR
+	output:
+		paths = GTF_DIR + "path_samplesGTF.txt"
+	shell:
+		"find {input.list_gtf} | grep .gtf > {output.paths}"
 #
 # #taco gera um problema na hora de rodar, pq provavelmente o snakemake tenta criar
 # #a pasta antes e o taco identifica como pasta já criada, talvez usar params
