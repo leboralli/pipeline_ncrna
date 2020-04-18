@@ -47,7 +47,7 @@ SALMON_INDEX = SALMON_DIR + "/gencode.v33.transcripts.index"
 #            ]
 
 SAMPLES = samples_fastq
-print(SAMPLES)
+# print(SAMPLES)
 #index
 GENOME_FILE = DATA_DIR + "GRCh38.p13.genome.fa"
 GTF = DATA_DIR + "gencode.v33.annotation.gtf"

@@ -1,6 +1,7 @@
 include:
 	'config.py'
 
+print (SAMPLES)
 rule all:
 	input:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
