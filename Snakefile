@@ -223,10 +223,11 @@ rule salmon_quantify:
 		quant_out = directory(SALMON_DIR + "/output/{sample}_quant")
 	params:
 		fastp_dir = FASTP_DIR
+		sample_id = "{sample}"
 	shell:
 		"""
 		salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
 		-o {output.quant_out} -p 18 --validateMappings \
 		--numBootstraps 100 --seqBias --writeMappings
-		find {params.fastp_dir} -type f ! -name '{sample}*'
+		find {params.fastp_dir} -type f ! -name '{params.sample_id}*'
 		"""
