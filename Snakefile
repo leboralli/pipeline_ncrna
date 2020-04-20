@@ -20,7 +20,7 @@ rule all:
 		FEELNC_CODPOT, #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
 		SALMON_DIR, #salmon_index
-		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
+		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES_FP)
 
 # rule fastq_dump:
 # 	input:
