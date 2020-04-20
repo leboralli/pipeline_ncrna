@@ -222,7 +222,7 @@ rule salmon_quantify:
 	output:
 		quant_out = directory(SALMON_DIR + "/output/{sample}_quant")
 	params:
-		fastp_dir = FASTP_DIR
+		fastp_dir = FASTP_DIR,
 		sample_id = "{sample}"
 	shell:
 		"""
