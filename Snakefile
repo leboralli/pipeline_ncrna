@@ -14,7 +14,7 @@ rule all:
 		GTF_DIR + "path_samplesGTF.txt",
 		# TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
-		"gffcompare_out_", #gffcompare
+		# "gffcompare_out_", #gffcompare
 		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		FEELNC_CODPOT, #feelnc_codpot
@@ -149,15 +149,15 @@ rule stringtiemerge:
 		"stringtie --merge -G {input.annotation} -o {output.merge_out} -m 200 \
 		{input.samples_gtf}"
 
-rule gffcompare:
-	input:
-		assembly = STRINGTIE_OUT + "assembly.gtf",
-		annotation = GTF
-	output:
-		out_prefix = "gffcompare_out_"
-	shell:
-		"gffcompare -r {input.annotation} -o {output.out_prefix} \
-		-i {input.assembly}"
+# rule gffcompare:
+# 	input:
+# 		assembly = STRINGTIE_OUT + "assembly.gtf",
+# 		annotation = GTF
+# 	output:
+# 		out_prefix = "gffcompare_out_"
+# 	shell:
+# 		"gffcompare -r {input.annotation} -o {output.out_prefix} \
+# 		-i {input.assembly}"
 
 #GTF to FASTA
 rule gtf_to_fasta:

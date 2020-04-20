@@ -83,10 +83,18 @@ samples_single = ['syn8231289']
 #         filepath = i.path
 #         shutil.move(filepath, "/home/boralli/workdir/data")
 
-for i in samples_single:
+for i in samples_control:
     # syn8238085 = syn.get(entity='syn8238085')
         print (i)
         i = syn.get(entity = i)
      # Get the path to the local copy of the data file
         filepath = i.path
         shutil.move(filepath, "/home/boralli/workdir/data")
+
+# for i in samples_single:
+#     # syn8238085 = syn.get(entity='syn8238085')
+#         print (i)
+#         i = syn.get(entity = i)
+#      # Get the path to the local copy of the data file
+#         filepath = i.path
+#         shutil.move(filepath, "/home/boralli/workdir/data")
