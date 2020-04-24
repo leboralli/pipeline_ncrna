@@ -74,7 +74,7 @@ samples_control = ['syn8228540', 'syn8228541', 'syn8231050', 'syn8231051',
  # Obtain a pointer and download the data by loop
 # with open("/home/boralli/workdir/data/list_samples.txt", "r") as f:
 
-samples_single = ['syn8230687']
+samples_single = ['syn8228123']
 # for i in samples_scz:
 #     # syn8238085 = syn.get(entity='syn8238085')
 #         print (i)
