@@ -7,20 +7,20 @@ rule all:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		# IDX_DIR, #index
-		expand(STAR_DIR + STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES_FP), #STAR
+		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES_FP), #STAR
 		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		# expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
-		# expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES_FP),
-		# GTF_DIR + "path_samplesGTF.txt",
+		expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES_FP),
+		GTF_DIR + "path_samplesGTF.txt",
 		# # TACO_DIR, #taco
-		# STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
+		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
 		# # "gffcompare_out_", #gffcompare
-		# GTF_TO_FASTA + "assembly_fasta.fa", #gffread
-		# FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
-		# FEELNC_CODPOT, #feelnc_codpot
-		# FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
-		# SALMON_DIR, #salmon_index
-		# expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES_FP)
+		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
+		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
+		FEELNC_CODPOT, #feelnc_codpot
+		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
+		SALMON_DIR, #salmon_index
+		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES_FP)
 
 # rule fastq_dump:
 # 	input:
