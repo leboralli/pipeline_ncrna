@@ -19,7 +19,7 @@ rule all:
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		FEELNC_CODPOT, #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
-		SALMON_DIR, #salmon_index
+		# SALMON_DIR, #salmon_index
 		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES_FP)
 
 # rule fastq_dump:
@@ -204,15 +204,15 @@ rule feelnc_classifier:
 		"FEELnc_classifier.pl -i {input.codpot}candidate_lncrna.gtf.lncRNA.gtf -a {input.annotation} \
 		> {output.out_classifier}"
 
-rule salmon_index:
-	input:
-		transcripts_fa = GTF_TO_FASTA + "assembly_fasta.fa"
-	# params:
-	# 	index_out = directory(SALMON_DIR)
-	output:
-		out = directory(SALMON_DIR) # + "/gencode.v31.transcripts.index"
-	shell:
-		"salmon index -t {input.transcripts_fa} -i {output.out} -k 31"
+# rule salmon_index:
+# 	input:
+# 		transcripts_fa = GTF_TO_FASTA + "assembly_fasta.fa"
+# 	# params:
+# 	# 	index_out = directory(SALMON_DIR)
+# 	output:
+# 		out = directory(SALMON_DIR) # + "/gencode.v31.transcripts.index"
+# 	shell:
+# 		"salmon index -t {input.transcripts_fa} -i {output.out} -k 31"
 
 rule salmon_quantify:
 	input:
