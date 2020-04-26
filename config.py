@@ -2,7 +2,7 @@
 import get_fastq as GF
 
 listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
-list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data/FASTP"))
+list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/FASTP"))
 # print(listOfFiles)
 samples_fastq = GF.get_fastqFiles(listOfFiles)
 samples_fastq_fastp = GF.get_fastqFiles(list_fastpFiles)
