@@ -224,10 +224,8 @@ rule salmon_quantify:
 	params:
 		fastp_dir = FASTP_DIR,
 		sample_id = "{sample}"
-	shell:
-		"""
-		salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
+	run:
+		shell("salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
 		-o {output.quant_out} -p 18 --validateMappings \
-		--numBootstraps 100 --seqBias --writeMappings
-		find {params.fastp_dir} -type f ! -name '{params.sample_id}* -delete'
-		"""
+		--numBootstraps 100 --seqBias --writeMappings")
+		shell("find {params.fastp_dir} -type f ! -name '{params.sample_id}*' -delete")
