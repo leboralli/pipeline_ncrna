@@ -8,7 +8,7 @@ samples_fastq = GF.get_fastqFiles(listOfFiles)
 samples_fastq_fastp = GF.get_fastqFiles(list_fastpFiles)
 SAMPLES = samples_fastq
 SAMPLES_FP = samples_fastq_fastp
-print (len(SAMPLES_FP))
+# print (len(SAMPLES_FP))
 # print(samples_fastq_fastp)
 #TESTE
 TESTE_DATA = "/home/leboralli/Documents/workdir"
