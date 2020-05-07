@@ -79,8 +79,8 @@ rule star:
 		#run_time = STAR + "log/star_run.time"
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
+	message: "Amostra {params.star_sample}"
 	run:
-		print("{params.star_sample}")
 		shell("STAR --runThreadN 9 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
