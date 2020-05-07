@@ -80,7 +80,8 @@ rule star:
 	# log: STAR_LOG
 	# benchmark: BENCHMARK + "star/{sample_star}"
 	run:
-		shell("STAR --runThreadN 12 --genomeDir {input.idx_star} \
+		print("{params.star_sample}")
+		shell("STAR --runThreadN 9 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
