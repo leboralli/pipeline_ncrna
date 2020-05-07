@@ -85,7 +85,7 @@ rule star:
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
 		--genomeChrBinNbits 12")
-		shell("find {params.star_dir} -type f ! -name '{params.star_sample}Aligned.sortedByCoord.out.bam' -delete")
+		# shell("find {params.star_dir} -type f ! -name '{params.star_sample}Aligned.sortedByCoord.out.bam' -delete")
 
 
 # rule rm_star:
