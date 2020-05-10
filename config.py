@@ -1,8 +1,8 @@
 # from get_fastq import getListOfFastq, dirName
 import get_fastq as GF
 
-listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
-list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/FASTP"))
+listOfFiles = GF.getListOfFastq(GF.dirName("/home3/boralli/workdir/data"))
+list_fastpFiles = GF.getListOfFastq(GF.dirName("/home3/boralli/workdir/FASTP"))
 # print(listOfFiles)
 samples_fastq = GF.get_fastqFiles(listOfFiles)
 samples_fastq_fastp = GF.get_fastqFiles(list_fastpFiles)
@@ -19,7 +19,7 @@ DATA_DIR =  "/home/boralli/workdir/data/"
 PIPE = WORK_DIR + "pipeline_v4/"
 PIPE_OLD = WORK_DIR + "pipeline_v3/"
 
-IDX_DIR = PIPE_OLD + "index/"
+IDX_DIR = PIPE + "index/"
 FASTP_DIR = WORK_DIR + "FASTP/"
 STAR_DIR = PIPE + "STAR/"
 SCALLOP_DIR = PIPE + "SCALLOP"

@@ -5,8 +5,8 @@ include:
 rule all:
 	input:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
-		# expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
-		# IDX_DIR, #index
+		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
+		IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES_FP), #STAR
 		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
 		# expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
@@ -19,7 +19,7 @@ rule all:
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		FEELNC_CODPOT, #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
-		# SALMON_DIR, #salmon_index
+		SALMON_DIR, #salmon_index
 		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES_FP)
 
 # rule fastq_dump:
@@ -48,19 +48,19 @@ rule fastp:
 		shell("find {params.data_dir} -type f -name '{params.name_sample}*' -delete ")
 
 
-# rule star_idx:
-# 	input:
-# 		fasta = GENOME_FILE,
-# 		gtf = GTF
-# 	output:
-# 		genome_dir = directory(IDX_DIR)
-# 	# threads: 18
-# 	shell:
-# 		"STAR --runThreadN 18 \
-# 		--runMode genomeGenerate \
-# 		--genomeDir {output.genome_dir} \
-# 		--genomeFastaFiles {input.fasta} \
-# 		--sjdbGTFfile {input.gtf} --sjdbOverhang 99"
+rule star_idx:
+	input:
+		fasta = GENOME_FILE,
+		gtf = GTF
+	output:
+		genome_dir = directory(IDX_DIR)
+	# threads: 18
+	shell:
+		"STAR --runThreadN 18 \
+		--runMode genomeGenerate \
+		--genomeDir {output.genome_dir} \
+		--genomeFastaFiles {input.fasta} \
+		--sjdbGTFfile {input.gtf} --sjdbOverhang 99"
 
 rule star:
 	input:
@@ -205,15 +205,15 @@ rule feelnc_classifier:
 		"FEELnc_classifier.pl -i {input.codpot}candidate_lncrna.gtf.lncRNA.gtf -a {input.annotation} \
 		> {output.out_classifier}"
 
-# rule salmon_index:
-# 	input:
-# 		transcripts_fa = GTF_TO_FASTA + "assembly_fasta.fa"
-# 	# params:
-# 	# 	index_out = directory(SALMON_DIR)
-# 	output:
-# 		out = directory(SALMON_DIR) # + "/gencode.v31.transcripts.index"
-# 	shell:
-# 		"salmon index -t {input.transcripts_fa} -i {output.out} -k 31"
+rule salmon_index:
+	input:
+		transcripts_fa = GTF_TO_FASTA + "assembly_fasta.fa"
+	# params:
+	# 	index_out = directory(SALMON_DIR)
+	output:
+		out = directory(SALMON_DIR) # + "/gencode.v31.transcripts.index"
+	shell:
+		"salmon index -t {input.transcripts_fa} -i {output.out} -k 31"
 
 rule salmon_quantify:
 	input:
