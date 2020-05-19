@@ -15,7 +15,7 @@ TESTE_DATA = "/home/leboralli/Documents/workdir"
 
 #Directories
 WORK_DIR = "/home/deboradelnero/workdir/"
-DATA_DIR =  "/home/deboradelnero/workdir/data"
+DATA_DIR =  "/home/deboradelnero/workdir/data/"
 PIPE = WORK_DIR + "pipeline_v4/"
 PIPE_OLD = WORK_DIR + "pipeline_v3/"
 
