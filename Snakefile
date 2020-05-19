@@ -56,7 +56,7 @@ rule star_idx:
 		genome_dir = directory(IDX_DIR)
 	# threads: 18
 	shell:
-		"STAR --runThreadN 18 \
+		"STAR --runThreadN 12 \
 		--runMode genomeGenerate \
 		--genomeDir {output.genome_dir} \
 		--genomeFastaFiles {input.fasta} \
@@ -81,7 +81,7 @@ rule star:
 	# benchmark: BENCHMARK + "star/{sample_star}"
 	message: "Amostra {params.star_sample}"
 	run:
-		shell("STAR --runThreadN 9 --genomeDir {input.idx_star} \
+		shell("STAR --runThreadN 12 --genomeDir {input.idx_star} \
 		--readFilesIn {input.R1} {input.R2} --outFileNamePrefix {params.outdir}\
 		--parametersFiles {input.parameters} \
 		--quantMode TranscriptomeSAM GeneCounts \
@@ -179,7 +179,7 @@ rule feelnc_filter:
 	output:
 		candidate_lncrna = FEELNC_FILTER + "candidate_lncrna.gtf"
 	shell:
-		"FEELnc_filter.pl -p 18 -i {input.assembly} -a {input.annotation} -o \
+		"FEELnc_filter.pl -p 12 -i {input.assembly} -a {input.annotation} -o \
 		--verbosity 1 --monoex=1 > {output.candidate_lncrna}"
 
 rule feelnc_codpot:
@@ -192,7 +192,7 @@ rule feelnc_codpot:
 	output:
 		out_dir = directory(FEELNC_CODPOT)
 	shell:
-		"FEELnc_codpot.pl -p 18 -i {input.candidates} -a {input.know_pc} -g {input.genome} \
+		"FEELnc_codpot.pl -p 12 -i {input.candidates} -a {input.know_pc} -g {input.genome} \
 		-l {input.know_lnc} --outdir {output.out_dir} --learnorftype=3 -v 1"
 
 rule feelnc_classifier:
@@ -227,6 +227,6 @@ rule salmon_quantify:
 		sample_id = "{sample}"
 	run:
 		shell("salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
-		-o {output.quant_out} -p 18 --validateMappings \
+		-o {output.quant_out} -p 12 --validateMappings \
 		--numBootstraps 100 --seqBias --writeMappings")
 		shell("find {params.fastp_dir} -type f ! -name '{params.sample_id}*' -delete")
