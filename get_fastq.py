@@ -1,4 +1,5 @@
 # Script para criar lista dos arquivos fastq em determinada pasta
+# Autor: Leandro Augusto Freire Boralli 
 import os
 import re
 

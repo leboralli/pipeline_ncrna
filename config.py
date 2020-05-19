@@ -1,8 +1,8 @@
 # from get_fastq import getListOfFastq, dirName
 import get_fastq as GF
 
-listOfFiles = GF.getListOfFastq(GF.dirName("/home3/boralli/workdir/data"))
-list_fastpFiles = GF.getListOfFastq(GF.dirName("/home3/boralli/workdir/FASTP"))
+listOfFiles = GF.getListOfFastq(GF.dirName("/home/deboradelnero/workdir/data"))
+list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/deboradelnero/workdir/FASTP"))
 # print(listOfFiles)
 samples_fastq = GF.get_fastqFiles(listOfFiles)
 samples_fastq_fastp = GF.get_fastqFiles(list_fastpFiles)
@@ -14,8 +14,8 @@ SAMPLES_FP = samples_fastq_fastp
 TESTE_DATA = "/home/leboralli/Documents/workdir"
 
 #Directories
-WORK_DIR = "/homelocal/boralli/workdir/"
-DATA_DIR =  "/home/boralli/workdir/data/"
+WORK_DIR = "/home/deboradelnero/workdir/"
+DATA_DIR =  "/home/deboradelnero/workdir/data"
 PIPE = WORK_DIR + "pipeline_v4/"
 PIPE_OLD = WORK_DIR + "pipeline_v3/"
 
@@ -37,21 +37,6 @@ FEELNC_CLASSIFIER = FEELNC_DIR + "CLASSIFIER/"
 SALMON_DIR = PIPE + "SALMON"
 SALMON_INDEX = SALMON_DIR + "/gencode.v33.transcripts.index"
 
-#Samples
-# SAMPLES = ['R2809_D2A01ACXX_TAATGCGC_L005_',
-#            'R2810_C00JVACXX_CGATGT_L001_',
-#            'R2816_C0GTHACXX_ACTGAT_L007_',
-#            'R2825_C00JVACXX_TTAGGC_L001_',
-#            'R2826_C00JVACXX_TGACCA_L001_',
-#            'R2827_C0JYLACXX_TTAGGC_L005_',
-#            'R2835_C0JYLACXX_TGACCA_L004_',
-#            'R2836_C3V3YACXX_CGGCTATG_L001_',
-#            'R2839_C0UH3ACXX_ATTACTCG_L001_',
-#            'R2845_C0J1FACXX_GCCAAT_L005_'
-#            ]
-
-
-# print(SAMPLES)
 #index
 GENOME_FILE = DATA_DIR + "GRCh38.p13.genome.fa"
 GTF = DATA_DIR + "gencode.v33.annotation.gtf"
@@ -66,10 +51,3 @@ FASTP_LOG = LOGS + "FASTP_LOG/"
 
 #BENCHMARK
 BENCHMARK_DIR = PIPE + "BENCHMARK"
-
-# Pegando lista de samples
-# listOfFiles = GF.getListOfFastq(GF.dirName("/home/leboralli/Documents/Aulas/Tutorial-Linux-1/arquivos_testes"))
-# print(listOfFiles)
-# samples_fastq = GF.get_fastqFiles(listOfFiles)
-# #
-# print(samples_fastq)
