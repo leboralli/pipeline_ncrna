@@ -58,14 +58,14 @@ RUN apt-      get install -y \
 #   make && \
 #   export PATH=$PATH:/home/downloads/scallop-0.10.3/src
 
-RUN conda install -c bioconda -c conda-forge \
-  fastp \
-  star \
-  snakemake \
-  rsem \
-  feelnc \
-  salmon \
-  scallop
+#RUN conda install -c bioconda -c conda-forge \
+#  fastp \
+#  star \
+#  snakemake \
+#  rsem \
+#  feelnc \
+#  salmon \
+#  scallop
 
 #RUN conda install -c r r
 #RUN echo "install.packages(\"randomForest\", repos=\"https://cran.rstudio.com\")" | R --no-save && \
