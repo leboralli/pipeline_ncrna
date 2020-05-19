@@ -12,7 +12,7 @@ WORKDIR /workdir
 VOLUME /data
 
 RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y \
+RUN apt-      get install -y \
   build-essential \
   unzip \
   bzip2 \
