@@ -7,20 +7,20 @@ rule all:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		# IDX_DIR, #index
-		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
-		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
-		# expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
-		expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES),
-		GTF_DIR + "path_samplesGTF.txt",
-		# # TACO_DIR, #taco
-		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
-		# # "gffcompare_out_", #gffcompare
-		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
-		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
-		FEELNC_CODPOT, #feelnc_codpot
-		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
-		SALMON_DIR, #salmon_index
-		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
+		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES), #STAR
+		# # expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
+		# # expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
+		# expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES),
+		# GTF_DIR + "path_samplesGTF.txt",
+		# # # TACO_DIR, #taco
+		# STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
+		# # # "gffcompare_out_", #gffcompare
+		# GTF_TO_FASTA + "assembly_fasta.fa", #gffread
+		# FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
+		# FEELNC_CODPOT, #feelnc_codpot
+		# FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
+		# SALMON_DIR, #salmon_index
+		# expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
 
 # rule fastq_dump:
 # 	input:
@@ -40,11 +40,13 @@ rule fastp:
 	params:
 		data_dir = DATA_DIR,
 		name_sample = "{sample}"
-	log: FASTP_LOG + "{sample}.html"
+	log:
+		log_html = FASTP_LOG + "{sample}.html",
+		log_json = FASTP_LOG + "{sample}.json"
 	message: "Executando o programa FASTP"
 	run:
 		shell('fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
-		-h {log} -j {log}')
+		-h {log.log_html} -j {log.log_json}')
 		shell("find {params.data_dir} -type f -name '{params.name_sample}*' -delete ")
 
 
