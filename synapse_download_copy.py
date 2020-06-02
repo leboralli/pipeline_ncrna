@@ -104,7 +104,8 @@ for i in samples_scz:
         i = syn.get(entity = i)
      # Get the path to the local copy of the data file
         filepath = i.path
-        shutil.move(filepath, "/homelocal/boralli/workdir/data")
+        # shutil.move(filepath, "/homelocal/boralli/workdir/data") #ngs
+        shutil.move(filepath, "/mnt/disks/sba1")
 
 for i in samples_control:
     # syn8238085 = syn.get(entity='syn8238085')
@@ -112,7 +113,8 @@ for i in samples_control:
         i = syn.get(entity = i)
      # Get the path to the local copy of the data file
         filepath = i.path
-        shutil.move(filepath, "/homelocal/boralli/workdir/data")
+        # shutil.move(filepath, "/homelocal/boralli/workdir/data") #ngs
+        shutil.move(filepath, "/mnt/disks/sba1")
 #
 # for i in samples_single:
 #     # syn8238085 = syn.get(entity='syn8238085')
