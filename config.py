@@ -14,8 +14,10 @@ SAMPLES = samples_fastq
 TESTE_DATA = "/home/leboralli/Documents/workdir"
 
 #Directories
-WORK_DIR = "/home/boralli/workdir/"
-DATA_DIR =  "/home/boralli/workdir/data/"
+# WORK_DIR = "/home/boralli/workdir/"
+WORK_DIR = "/mnt/disks/sba1/"
+# DATA_DIR =  "/home/boralli/workdir/data/"
+DATA_DIR =  "/mnt/disks/sba1/data/"
 PIPE = WORK_DIR + "pipeline_v4/"
 PIPE_OLD = WORK_DIR + "pipeline_v3/"
 

@@ -46,7 +46,7 @@ rule fastp:
 	message: "Executando o programa FASTP"
 	run:
 		shell('fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
-		-h {log.log_html} -j {log.log_json}')
+		-h {log.log_html} -j {log.log_json}'),
 		shell("find {params.data_dir} -type f -name '{params.name_sample}*' -delete ")
 
 
