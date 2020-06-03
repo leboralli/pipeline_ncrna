@@ -1,7 +1,8 @@
 # from get_fastq import getListOfFastq, dirName
 import get_fastq as GF
 
-listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
+# listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
+listOfFiles = GF.getListOfFastq(GF.dirName("/mnt/disks/sba1/data/"))
 # list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/FASTP"))
 # print(listOfFiles)
 samples_fastq = GF.get_fastqFiles(listOfFiles)
