@@ -2,25 +2,25 @@
 import get_fastq as GF
 
 # listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
-listOfFiles = GF.getListOfFastq(GF.dirName("/mnt/disks/sba1/data/"))
-# list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/FASTP"))
+listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
+list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/FASTP"))
 # print(listOfFiles)
 samples_fastq = GF.get_fastqFiles(listOfFiles)
-# samples_fastq_fastp = GF.get_fastqFiles(list_fastpFiles)
+samples_fastq_fastp = GF.get_fastqFiles(list_fastpFiles)
 SAMPLES = samples_fastq
-# SAMPLES_FP = samples_fastq_fastp
+SAMPLES_FP = samples_fastq_fastp
 # print (len(SAMPLES_FP))
 # print(samples_fastq_fastp)
 #TESTE
 TESTE_DATA = "/home/leboralli/Documents/workdir"
 
 #Directories
-# WORK_DIR = "/home/boralli/workdir/"
-WORK_DIR = "/mnt/disks/sba1/"
-# DATA_DIR =  "/home/boralli/workdir/data/"
-DATA_DIR =  "/mnt/disks/sba1/data/"
+WORK_DIR = "/home/boralli/workdir/" #ngs
+# WORK_DIR = "/mnt/disks/sba1/" #google
+DATA_DIR =  "/home/boralli/workdir/data/" #ngs
+# DATA_DIR =  "/mnt/disks/sba1/data/" #google
 PIPE = WORK_DIR + "pipeline_v4/"
-PIPE_OLD = WORK_DIR + "pipeline_v3/"
+# PIPE_OLD = WORK_DIR + "pipeline_v3/"
 
 IDX_DIR = PIPE + "index/"
 FASTP_DIR = WORK_DIR + "FASTP/"
