@@ -1,3 +1,5 @@
+import get_fastq as GF
+
 include:
 	'config.py'
 
@@ -49,7 +51,9 @@ rule fastp:
 		-h {log.log_html} -j {log.log_json}'),
 		shell("find {params.data_dir} -type f -name '{params.name_sample}*' -delete ")
 
-
+list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/FASTP"))
+samples_fastq_fastp = GF.get_fastqFiles(list_fastpFiles)
+SAMPLES_FP = samples_fastq_fastp
 # rule star_idx:
 # 	input:
 # 		fasta = GENOME_FILE,
