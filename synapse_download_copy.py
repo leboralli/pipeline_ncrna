@@ -3,9 +3,27 @@ import shutil
 syn = synapseclient.Synapse()
 syn.login('leboralli','Eriol0284*')
 
-#list of samples
-#controle
-#
+'''
+Amostras já analisadas:
+syn8232245, syn8232249, syn8231735, syn8231736, syn8232765, syn8232777,
+syn8229813, syn8229817, syn8234414, syn8234420, syn8232866, syn8232874,
+syn8231976, syn8231989, syn8238878, syn8238879, syn8231265, syn8231269,
+syn8232562, syn8232575, syn8231971, syn8231972, syn8230776, syn8230777,
+syn8230333, syn8230337, syn8231758, syn8231759, syn8239549, syn8239553,
+syn8233046, syn8233052, syn8230611, syn8230618, syn8230426, syn8230428,
+syn8239247, syn8239254, syn8230603, syn8230607, syn8234189, syn8234190,
+syn8234155, syn8234163, syn8231708, syn8231709, syn8231372, syn8231374,
+syn8233084, syn8233094, syn8229862, syn8229863, syn8239224, syn8239225,
+syn8231070, syn8231071, syn8235393, syn8235401, syn8238712, syn8238716
+syn8234552, syn8234553
+
+29/06/2020
+syn8238085, syn8238091, syn8241621, syn8241622, syn8229621, syn8229622,
+syn8231270, syn8231271, syn8239833, syn8239835, syn8238853, syn8238855,
+syn8231288, syn8231289, syn8228250, syn8228252, syn8238429, syn8238430
+'''
+
+
 samples_scz = ['syn8238085', 'syn8238091', 'syn8241621', 'syn8241622',
                 'syn8229621', 'syn8229622', 'syn8232245', 'syn8232249',
                 'syn8231270', 'syn8231271', 'syn8239833', 'syn8239835',
@@ -97,29 +115,33 @@ samples_control = ['syn8232353', 'syn8232354', 'syn8228530', 'syn8228531',
  # Obtain a pointer and download the data by loop
 # with open("/home/boralli/workdir/data/list_samples.txt", "r") as f:
 
-# samples_single = ['syn8232765', 'syn8232777']
-for i in samples_scz:
-    # syn8238085 = syn.get(entity='syn8238085')
-        print (i)
-        i = syn.get(entity = i)
-     # Get the path to the local copy of the data file
-        filepath = i.path
-        # shutil.move(filepath, "/homelocal/boralli/workdir/data") #ngs
-        shutil.move(filepath, "/mnt/disks/sba1/data")
-
-for i in samples_control:
-    # syn8238085 = syn.get(entity='syn8238085')
-        print (i)
-        i = syn.get(entity = i)
-     # Get the path to the local copy of the data file
-        filepath = i.path
-        # shutil.move(filepath, "/homelocal/boralli/workdir/data") #ngs
-        shutil.move(filepath, "/mnt/disks/sba1/data")
-#
-# for i in samples_single:
+samples_18 = ['syn8238085', 'syn8238091', 'syn8241621', 'syn8241622',
+              'syn8229621', 'syn8229622', 'syn8231270', 'syn8231271',
+              'syn8239833', 'syn8239835', 'syn8238853', 'syn8238855',
+              'syn8231288', 'syn8231289', 'syn8228250', 'syn8228252',
+              'syn8238429', 'syn8238430']
+# for i in samples_scz:
 #     # syn8238085 = syn.get(entity='syn8238085')
 #         print (i)
 #         i = syn.get(entity = i)
 #      # Get the path to the local copy of the data file
 #         filepath = i.path
-#         shutil.move(filepath, "/home/boralli/workdir/data")
+#         # shutil.move(filepath, "/homelocal/boralli/workdir/data") #ngs
+#         shutil.move(filepath, "/mnt/disks/sba1/data")
+#
+# for i in samples_control:
+#     # syn8238085 = syn.get(entity='syn8238085')
+#         print (i)
+#         i = syn.get(entity = i)
+#      # Get the path to the local copy of the data file
+#         filepath = i.path
+#         # shutil.move(filepath, "/homelocal/boralli/workdir/data") #ngs
+#         shutil.move(filepath, "/mnt/disks/sba1/data")
+#
+for i in samples_18:
+    # syn8238085 = syn.get(entity='syn8238085')
+        print (i)
+        i = syn.get(entity = i)
+     # Get the path to the local copy of the data file
+        filepath = i.path
+        shutil.move(filepath, "/home/boralli/workdir/data")
