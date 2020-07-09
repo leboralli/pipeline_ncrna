@@ -44,6 +44,19 @@ syn8231288, syn8231289, syn8228250, syn8228252, syn8238429, syn8238430
                 'syn8235648', 'syn8235649', 'syn8231990', 'syn8231991',
                 'syn8228374', 'syn8228376', 'syn8228330', 'syn8228337',
                 'syn8231897', 'syn8231898', 'syn8238181', 'syn8238182'
+
+09/07/2020
+'syn8231926', 'syn8231931', 'syn8231650', 'syn8231651',
+                'syn8228425', 'syn8228437',
+                'syn8229559', 'syn8229560', 'syn8230376', 'syn8230377',
+                'syn8231710', 'syn8231711', 'syn8231690', 'syn8231693',
+                'syn8232844', 'syn8232845', 'syn8229587', 'syn8229588',
+                'syn8231342', 'syn8231346', 'syn8229472', 'syn8229478',
+                'syn8230345', 'syn8230346', 'syn8231618', 'syn8231622',
+                'syn8238398', 'syn8238399',
+                'syn8229918', 'syn8229919', 'syn8234426', 'syn8234433',
+                'syn8234528', 'syn8234530', 'syn8238640', 'syn8238641',
+                'syn8238989', 'syn8238996'
 '''
 
 
@@ -113,14 +126,17 @@ samples_control = ['syn8232353', 'syn8232354', 'syn8228530', 'syn8228531',
  # Obtain a pointer and download the data by loop
 # with open("/home/boralli/workdir/data/list_samples.txt", "r") as f:
 
-samples_18 = ['syn8230338', 'syn8230339',
-                'syn8239342', 'syn8239345', 'syn8232100', 'syn8232101',
-                'syn8234792', 'syn8234793', 'syn8233179', 'syn8233180',
-                'syn8231744', 'syn8231748', 'syn8229772', 'syn8229773',
-                'syn8234707', 'syn8234711', 'syn8233100', 'syn8233103',
-                'syn8235648', 'syn8235649', 'syn8231990', 'syn8231991',
-                'syn8228374', 'syn8228376', 'syn8228330', 'syn8228337',
-                'syn8231897', 'syn8231898', 'syn8238181', 'syn8238182']
+samples_n = ['syn8231926', 'syn8231931', 'syn8231650', 'syn8231651',
+                'syn8228425', 'syn8228437',
+                'syn8229559', 'syn8229560', 'syn8230376', 'syn8230377',
+                'syn8231710', 'syn8231711', 'syn8231690', 'syn8231693',
+                'syn8232844', 'syn8232845', 'syn8229587', 'syn8229588',
+                'syn8231342', 'syn8231346', 'syn8229472', 'syn8229478',
+                'syn8230345', 'syn8230346', 'syn8231618', 'syn8231622',
+                'syn8238398', 'syn8238399',
+                'syn8229918', 'syn8229919', 'syn8234426', 'syn8234433',
+                'syn8234528', 'syn8234530', 'syn8238640', 'syn8238641',
+                'syn8238989', 'syn8238996']
 # for i in samples_scz:
 #     # syn8238085 = syn.get(entity='syn8238085')
 #         print (i)
@@ -139,7 +155,7 @@ samples_18 = ['syn8230338', 'syn8230339',
 #         # shutil.move(filepath, "/homelocal/boralli/workdir/data") #ngs
 #         shutil.move(filepath, "/mnt/disks/sba1/data")
 #
-for i in samples_18:
+for i in samples_n:
     # syn8238085 = syn.get(entity='syn8238085')
         print (i)
         i = syn.get(entity = i)
