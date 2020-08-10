@@ -19,8 +19,8 @@ rule all:
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		FEELNC_CODPOT, #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
-		# SALMON_DIR, #salmon_index
-		# expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
+		SALMON_DIR, #salmon_index
+		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
 
 # rule fastq_dump:
 # 	input:
