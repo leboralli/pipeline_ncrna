@@ -114,18 +114,11 @@ Controle:
                     'syn8228439', 'syn8228447',
                     'syn8232734', 'syn8232736', 'syn8234722', 'syn8234724',
                     'syn8228154', 'syn8228159'
-'''
 
 
-samples_scz = [ ]
-
-samples_control = [ ]
-# samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
-# samples_read = samples_file.read()
- # Obtain a pointer and download the data by loop
-# with open("/home/boralli/workdir/data/list_samples.txt", "r") as f:
-
-samples_n = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
+Amostras baixadas novamente para o SALMON
+SCZ
+'syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
              'syn8232765', 'syn8232777', 'syn8229813', 'syn8229817',
              'syn8234414', 'syn8234420', 'syn8232866', 'syn8232874',
              'syn8231976', 'syn8231989', 'syn8238878', 'syn8238879',
@@ -140,7 +133,44 @@ samples_n = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
              'syn8233084', 'syn8233094', 'syn8229862', 'syn8229863',
              'syn8239224', 'syn8239225', 'syn8231070', 'syn8231071',
              'syn8235393', 'syn8235401', 'syn8238712', 'syn8238716',
-             'syn8234552', 'syn8234553']
+             'syn8234552', 'syn8234553'
+
+24/08
+syn8238085, syn8238091, syn8241621, syn8241622, syn8229621, syn8229622,
+syn8231270, syn8231271, syn8239833, syn8239835, syn8238853, syn8238855,
+syn8231288, syn8231289, syn8228250, syn8228252, syn8238429, syn8238430,
+'syn8238287', 'syn8238291', 'syn8230523', 'syn8230524',
+                'syn8237787', 'syn8237798',
+                'syn8234191', 'syn8234195', 'syn8229611', 'syn8229613',
+                'syn8235667', 'syn8235668', 'syn8234971', 'syn8234998',
+                'syn8233132', 'syn8233139',
+                'syn8239762', 'syn8239763',
+                'syn8230697', 'syn8230698', 'syn8228780', 'syn8228824',
+                'syn8228480', 'syn8228498', 'syn8238486', 'syn8238487',
+                'syn8230097', 'syn8230113', 'syn8231517', 'syn8231518'
+'''
+
+
+samples_scz = [ ]
+
+samples_control = [ ]
+# samples_file = open("/home/boralli/workdir/data/list_samples.txt", "r")
+# samples_read = samples_file.read()
+ # Obtain a pointer and download the data by loop
+# with open("/home/boralli/workdir/data/list_samples.txt", "r") as f:
+
+samples_n = ['syn8238085', 'syn8238091', 'syn8241621', 'syn8241622',
+             'syn8229621', 'syn8229622', 'syn8231270', 'syn8231271',
+             'syn8239833', 'syn8239835', 'syn8238853', 'syn8238855',
+             'syn8231288', 'syn8231289', 'syn8228250', 'syn8228252',
+             'syn8238429', 'syn8238430', 'syn8238287', 'syn8238291',
+             'syn8230523', 'syn8230524', 'syn8237787', 'syn8237798',
+             'syn8234191', 'syn8234195', 'syn8229611', 'syn8229613',
+             'syn8235667', 'syn8235668', 'syn8234971', 'syn8234998',
+             'syn8233132', 'syn8233139', 'syn8239762', 'syn8239763',
+             'syn8230697', 'syn8230698', 'syn8228780', 'syn8228824',
+             'syn8228480', 'syn8228498', 'syn8238486', 'syn8238487',
+             'syn8230097', 'syn8230113', 'syn8231517', 'syn8231518']
 # for i in samples_scz:
 #     # syn8238085 = syn.get(entity='syn8238085')
 #         print (i)
