@@ -10,7 +10,7 @@ def random_list(lista):
     print len(lista_interna)
     print (selecionadas)
     lista2 = list(set(lista_interna) - set(selecionadas))
-    print(lista2)
+    print(len(lista2))
 
 
 
