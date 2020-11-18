@@ -4,8 +4,8 @@ include:
 import synapseclient
 import shutil
 import random
-# syn = synapseclient.Synapse()
-# syn.login('leboralli','Eriol0284*')
+syn = synapseclient.Synapse()
+syn.login('leboralli','Eriol0284*')
 
 lista_samples = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
                     'syn8232765', 'syn8232777', 'syn8229813', 'syn8229817',
