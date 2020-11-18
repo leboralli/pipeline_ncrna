@@ -1,18 +1,11 @@
+include:
+	'config.py'
+
 import synapseclient
 import shutil
 import random
 # syn = synapseclient.Synapse()
 # syn.login('leboralli','Eriol0284*')
-
-def random_list(lista):
-    lista_interna = lista
-    selecionadas = random.sample(lista, k = 20)
-    print len(lista_interna)
-    print (selecionadas)
-    lista2 = list(set(lista_interna) - set(selecionadas))
-    print(len(lista2))
-
-
 
 lista_samples = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
                     'syn8232765', 'syn8232777', 'syn8229813', 'syn8229817',
@@ -100,12 +93,71 @@ lista_samples = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
                     'syn8232734', 'syn8232736', 'syn8234722', 'syn8234724',
                     'syn8228154', 'syn8228159']
 
-random_list(lista_samples)
+samples_32 = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
+                    'syn8232765', 'syn8232777', 'syn8229813', 'syn8229817',
+                    'syn8234414', 'syn8234420', 'syn8232866', 'syn8232874',
+                    'syn8231976', 'syn8231989', 'syn8238878', 'syn8238879',
+                    'syn8231265', 'syn8231269', 'syn8232562', 'syn8232575',
+                    'syn8231971', 'syn8231972', 'syn8230776', 'syn8230777',
+                    'syn8230333', 'syn8230337', 'syn8231758', 'syn8231759',
+                    'syn8239549', 'syn8239553', 'syn8233046', 'syn8233052',]
+for i in samples_32:
+    # syn8238085 = syn.get(entity='syn8238085')
+        print (i)
+        i = syn.get(entity = i)
+     # Get the path to the local copy of the data file
+        filepath = i.path
+        shutil.move(filepath, "/home/boralli/workdir/data")
 
-# for i in samples_n:
-#     # syn8238085 = syn.get(entity='syn8238085')
-#         print (i)
-#         i = syn.get(entity = i)
-#      # Get the path to the local copy of the data file
-#         filepath = i.path
-#         shutil.move(filepath, "/home/boralli/workdir/data")
+def random_list(lista):
+    lista_interna = lista
+    selecionadas = random.sample(lista, k = 20)
+    print len(lista_interna)
+    print (selecionadas)
+    lista2 = list(set(lista_interna) - set(selecionadas))
+    print (len(lista2))
+
+
+rule all:
+	input:
+		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
+		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
+        expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
+
+
+rule fastp:
+	input:
+		R1= DATA_DIR + "{sample}R1_001.fastq.gz",
+		R2= DATA_DIR + "{sample}R2_001.fastq.gz"
+	output:
+		R1out= FASTP_DIR + "{sample}R1.fastq",
+		R2out= FASTP_DIR + "{sample}R2.fastq"
+	params:
+		data_dir = DATA_DIR,
+		name_sample = "{sample}"
+	log:
+		log_html = FASTP_LOG + "{sample}.html",
+		log_json = FASTP_LOG + "{sample}.json"
+	message: "Executando o programa FASTP"
+	run:
+		shell('fastp -i {input.R1} -I {input.R2} -o {output.R1out} -O {output.R2out} \
+		-h {log.log_html} -j {log.log_json}')
+		#shell("find {params.data_dir} -type f -name '{params.name_sample}*' -delete ")
+
+rule salmon_quantify:
+	input:
+		index = SALMON_DIR, #+ "/gencode.v31.transcripts.index",
+		R1 = FASTP_DIR + "{sample}R1.fastq",
+		R2 = FASTP_DIR + "{sample}R2.fastq"
+	output:
+		quant_out = directory(SALMON_DIR + "/output/{sample}_quant")
+	params:
+		fastp_dir = FASTP_DIR,
+		sample_id = "{sample}"
+	run:
+		shell("salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
+		-o {output.quant_out} -p 8 --validateMappings \
+		--numBootstraps 100 --seqBias --writeMappings")
+        #shell("find {params.data_dir} -type f -name '{params.name_sample}*' -delete ")
+
+# random_list(lista_samples)
