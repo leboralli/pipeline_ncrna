@@ -6,7 +6,7 @@ import random
 
 def random_list(lista):
     lista_interna = lista
-    selecionadas = random.choices(lista, k = 10)
+    selecionadas = random.sample(lista, k = 10)
     print (selecionadas)
 
 
