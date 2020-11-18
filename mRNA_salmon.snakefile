@@ -109,13 +109,13 @@ for i in samples_32:
         filepath = i.path
         shutil.move(filepath, "/home/boralli/workdir/data")
 
-def random_list(lista):
-    lista_interna = lista
-    selecionadas = random.sample(lista, k = 20)
-    print len(lista_interna)
-    print (selecionadas)
-    lista2 = list(set(lista_interna) - set(selecionadas))
-    print (len(lista2))
+# def random_list(lista):
+#     lista_interna = lista
+#     selecionadas = random.sample(lista, k = 20)
+#     print len(lista_interna)
+#     print (selecionadas)
+#     lista2 = list(set(lista_interna) - set(selecionadas))
+#     print (len(lista2))
 
 
 rule all:
