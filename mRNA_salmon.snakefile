@@ -7,8 +7,10 @@ import random
 def random_list(lista):
     lista_interna = lista
     selecionadas = random.sample(lista, k = 10)
+    print len(lista_interna)
     print (selecionadas)
-
+    lista_interna.pop(selecionadas)
+    print(lista_interna)
 
 lista_samples = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
                     'syn8232765', 'syn8232777', 'syn8229813', 'syn8229817',
