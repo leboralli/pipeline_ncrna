@@ -4,8 +4,8 @@ include:
 import synapseclient
 import shutil
 import random
-syn = synapseclient.Synapse()
-syn.login('leboralli','Eriol0284*')
+# syn = synapseclient.Synapse()
+# syn.login('leboralli','Eriol0284*')
 
 lista_samples = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
                     'syn8232765', 'syn8232777', 'syn8229813', 'syn8229817',
@@ -101,13 +101,13 @@ samples_32 = ['syn8232245', 'syn8232249', 'syn8231735', 'syn8231736',
                     'syn8231971', 'syn8231972', 'syn8230776', 'syn8230777',
                     'syn8230333', 'syn8230337', 'syn8231758', 'syn8231759',
                     'syn8239549', 'syn8239553', 'syn8233046', 'syn8233052',]
-for i in samples_32:
-    # syn8238085 = syn.get(entity='syn8238085')
-        print (i)
-        i = syn.get(entity = i)
-     # Get the path to the local copy of the data file
-        filepath = i.path
-        shutil.move(filepath, "/home/boralli/workdir/data")
+# for i in samples_32:
+#     # syn8238085 = syn.get(entity='syn8238085')
+#         print (i)
+#         i = syn.get(entity = i)
+#      # Get the path to the local copy of the data file
+#         filepath = i.path
+#         shutil.move(filepath, "/home/boralli/workdir/data")
 
 # def random_list(lista):
 #     lista_interna = lista
