@@ -122,8 +122,8 @@ rule all:
 	input:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
-		SALMON_DIR, #salmon_index,
-        expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
+		SALMON_DIR_MRNA, #salmon_index,
+        expand(SALMON_DIR_MRNA + "/output/{sample}_quant", sample=SAMPLES)
 
 
 rule fastp:
