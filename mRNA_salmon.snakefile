@@ -122,6 +122,7 @@ rule all:
 	input:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
+		SALMON_DIR, #salmon_index,
         expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES)
 
 
@@ -144,13 +145,23 @@ rule fastp:
 		-h {log.log_html} -j {log.log_json}')
 		#shell("find {params.data_dir} -type f -name '{params.name_sample}*' -delete ")
 
+rule salmon_index:
+	input:
+		transcripts_fa = TRANSCRPT
+	# params:
+	# 	index_out = directory(SALMON_DIR)
+	output:
+		out = directory(SALMON_DIR_MRNA) # + "/gencode.v31.transcripts.index"
+	shell:
+		"salmon index -t {input.transcripts_fa} -i {output.out} -k 31"
+
 rule salmon_quantify:
 	input:
-		index = SALMON_DIR, #+ "/gencode.v31.transcripts.index",
+		index = SALMON_DIR_MRNA, #+ "/gencode.v31.transcripts.index",
 		R1 = FASTP_DIR + "{sample}R1.fastq",
 		R2 = FASTP_DIR + "{sample}R2.fastq"
 	output:
-		quant_out = directory(SALMON_DIR + "/output/{sample}_quant")
+		quant_out = directory(SALMON_DIR_MRNA + "/output/{sample}_quant")
 	params:
 		fastp_dir = FASTP_DIR,
 		sample_id = "{sample}"

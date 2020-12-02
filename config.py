@@ -39,7 +39,8 @@ FEELNC_CLASSIFIER = FEELNC_DIR + "CLASSIFIER/"
 
 SALMON_DIR = PIPE + "SALMON"
 SALMON_INDEX = SALMON_DIR + "/gencode.v33.transcripts.index"
-
+SALMON_DIR_MRNA = PIPE + "SALMON_MRNA"
+SALMON_INDEX_MRNA = SALMON_DIR + "/gencode.v33.transcripts_mRNA.index"
 #index
 GENOME_FILE = DATA_DIR + "GRCh38.p13.genome.fa"
 GTF = DATA_DIR + "gencode.v33.annotation.gtf"
