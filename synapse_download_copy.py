@@ -285,6 +285,16 @@ samples_n = ['syn8238246', 'syn8238247', 'syn8231575', 'syn8231576',
             'syn8228439', 'syn8228447',
             'syn8232734', 'syn8232736', 'syn8234722', 'syn8234724',
             'syn8228154', 'syn8228159']
+
+#06/01/2121
+#R2809, R2826, R2828, R2834, R2836
+new_samples = ['syn8238085', 'syn8238091', 'syn8238094', 'syn8238101',
+                'syn8238102','syn8238103', 'syn8238104', 'syn8238105',
+                'syn8232353', 'syn8232354', 'syn8232356', 'syn8232357',
+                'syn8241621', 'syn8241622', 'syn8241626', 'syn8241628',
+                'syn8241632', 'syn8241633', 'syn8241634', 'syn8241635',
+                'syn8229621', 'syn8229622', 'syn8228530', 'syn8228531',
+                'syn8228535', 'syn8228537', 'syn8228540', 'syn8228541']
 # for i in samples_scz:
 #     # syn8238085 = syn.get(entity='syn8238085')
 #         print (i)
@@ -303,7 +313,7 @@ samples_n = ['syn8238246', 'syn8238247', 'syn8231575', 'syn8231576',
 #         # shutil.move(filepath, "/homelocal/boralli/workdir/data") #ngs
 #         shutil.move(filepath, "/mnt/disks/sba1/data")
 #
-for i in samples_n:
+for i in new_samples:
     # syn8238085 = syn.get(entity='syn8238085')
         print (i)
         i = syn.get(entity = i)
