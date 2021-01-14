@@ -324,4 +324,4 @@ for i in new_samples:
         i = syn.get(entity = i)
      # Get the path to the local copy of the data file
         filepath = i.path
-        shutil.move(filepath, "/home/boralli/workdir/data")
+        shutil.move(filepath, "/homelocal/boralli/workdir/data")
