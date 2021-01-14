@@ -1,5 +1,5 @@
 # Script para criar lista dos arquivos fastq em determinada pasta
-# Autor: Leandro Augusto Freire Boralli 
+# Autor: Leandro Augusto Freire Boralli
 import os
 import re
 
@@ -34,7 +34,8 @@ def get_fastqFiles(data):
     for arquivo in data:
         if 'fastq' in arquivo:
             # print(arquivo)
-            regexList = re.findall('.+L00\d_', arquivo)
+            # regexList = re.findall('.+L00\d_', arquivo)
+            regexList = re.findall('.+allLanes_', arquivo)
             # print(regexList)
             fastqList.append(regexList)
             # print(fastqList)
