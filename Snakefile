@@ -7,10 +7,10 @@ rule all:
 		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		# IDX_DIR, #index
-		# expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES_FP), #STAR
+		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES_FP), #STAR
 		# # expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
-		# # expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
-		# expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES_FP),
+		# expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
+		expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES_FP),
 		GTF_DIR + "path_samplesGTF.txt",
 		# # # TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
@@ -32,8 +32,8 @@ rule all:
 
 rule fastp:
 	input:
-		R1= DATA_DIR + "{sample}R1_001.fastq.gz",
-		R2= DATA_DIR + "{sample}R2_001.fastq.gz"
+		R1= DATA_DIR + "{sample}R1.fastq.gz",
+		R2= DATA_DIR + "{sample}R2.fastq.gz"
 	output:
 		R1out= FASTP_DIR + "{sample}R1.fastq",
 		R2out= FASTP_DIR + "{sample}R2.fastq"
@@ -230,4 +230,3 @@ rule salmon_quantify:
 		shell("salmon quant -i {input.index} -l A -1 {input.R1} -2 {input.R2} \
 		-o {output.quant_out} -p 8 --validateMappings \
 		--numBootstraps 100 --seqBias --writeMappings")
-		
