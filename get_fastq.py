@@ -38,10 +38,10 @@ def get_fastqFiles(data):
             regexList = re.findall('.+allLanes_', arquivo)
             # print(regexList)
             fastqList.append(regexList)
-            print(fastqList)
+            # print(fastqList)
     for sublista in fastqList:
         for item in sublista:
             flat_list.append(item)
-    # print (flat_list)
+    print (flat_list)
     return flat_list
 # print(fastqList)
