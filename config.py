@@ -1,6 +1,6 @@
 # from get_fastq import getListOfFastq, dirName
 import get_fastq as GF
-
+import os
 # listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
 listOfFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/data"))
 list_fastpFiles = GF.getListOfFastq(GF.dirName("/home/boralli/workdir/FASTP"))
@@ -26,6 +26,11 @@ IDX_DIR = PIPE_OLD + "index/"
 FASTP_DIR = WORK_DIR + "FASTP/"
 STAR_DIR = PIPE + "STAR/"
 SCALLOP_DIR = PIPE + "SCALLOP"
+
+#Criando o diretorio do Stringtie, caso não exista
+if not os.path.exists(PIPE + 'STRINGTIE'):
+    os.makedirs(PIPE + 'STRINGTIE') 
+
 STRINGTIE_DIR = PIPE + "STRINGTIE"
 GTF_DIR = PIPE + "GTF/"
 # TACO_DIR = PIPE + "TACO_output/"
