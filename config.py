@@ -19,7 +19,7 @@ WORK_DIR = "/home/boralli/workdir/" #ngs
 # WORK_DIR = "/mnt/disks/sba1/" #google
 DATA_DIR =  "/home/boralli/workdir/data/" #ngs
 # DATA_DIR =  "/mnt/disks/sba1/data/" #google
-PIPE = WORK_DIR + "pipeline_v4/"
+PIPE = WORK_DIR + "pipeline_allLanes/"
 # PIPE_OLD = WORK_DIR + "pipeline_v3/"
 
 IDX_DIR = PIPE + "index/"
