@@ -26,7 +26,7 @@ TESTE_DATA = "/home/leboralli/Documents/workdir"
 # DATA_DIR =  "/home/boralli/workdir/data/"
 #NGS3
 WORK_DIR = "/homelocal/boralli/workdir/"
-DATA_DIR =  "/home/boralli/workdir/data/"
+DATA_DIR =  "/homelocal/boralli/workdir/data/"
 # WORK_DIR = "/mnt/disks/sba1/" #google
 
 # DATA_DIR =  "/mnt/disks/sba1/data/" #google
