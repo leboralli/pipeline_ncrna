@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import synapseclient
 import shutil
 syn = synapseclient.Synapse()
