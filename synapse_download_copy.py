@@ -4,7 +4,7 @@ syn = synapseclient.Synapse()
 syn.login('leboralli','Eriol0284*')
 
 '''
-Amostras já analisadas:
+Amostras já analisadas
 SCZ
 syn8232245, syn8232249, syn8231735, syn8231736, syn8232765, syn8232777,
 syn8229813, syn8229817, syn8234414, syn8234420, syn8232866, syn8232874,
