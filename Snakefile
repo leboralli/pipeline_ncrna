@@ -1,6 +1,6 @@
 include:
-	# 'config.py'
-	'config-ngs3.py'
+	'config.py'
+	# 'config-ngs3.py'
 # print (SAMPLES_FP)
 rule all:
 	input:
