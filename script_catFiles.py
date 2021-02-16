@@ -1,6 +1,6 @@
 
 import os
-# import config.py
+import config.py
 
 data = DATA_DIR
 lista = os.listdir(data)
