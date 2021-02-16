@@ -7,7 +7,8 @@ lista = os.listdir(data)
 
 teste = []
 for i in lista:
+    print (i)
     chars = i[0:3]
-    teste.append(chars)
+    teste.append(chars.stripe())
 
 print (teste)
