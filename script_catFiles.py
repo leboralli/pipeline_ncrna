@@ -1,10 +1,10 @@
 
 import os, re
-import config.py
+import config.py as CF
 
 data = DATA_DIR
 lista = os.listdir(data)
-
+print (lista)
 r = re.compile(r"^R\d{4}")
 teste = []
 for i in lista:
