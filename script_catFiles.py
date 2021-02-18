@@ -35,5 +35,5 @@ for i in unique:   #unique
 # sample = [x for x in unique if re.search(unique,x)]
 # print (sample)
 
-ttt = re.findall(str(R3375 + '.*'), str(samples_lista))
+ttt = re.findall(str('R3375' + '.*'), str(samples_lista))
 print (ttt)
