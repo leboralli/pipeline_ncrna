@@ -5,7 +5,7 @@ import config.py
 data = DATA_DIR
 lista = os.listdir(data)
 
-r = re.compile("^R\d{4}")
+r = re.compile(r"^R\d{4}")
 teste = []
 for i in lista:
     print (i)
