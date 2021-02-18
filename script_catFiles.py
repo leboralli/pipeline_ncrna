@@ -29,6 +29,6 @@ for i in unique:
     itensUnicos = re.match(i, str(samples_lista))
     listaunicos.append(itensUnicos)
 
-print listaunicos
+print (listaunicos)
 # sample = [x for x in unique if re.search(unique,x)]
 # print (sample)
