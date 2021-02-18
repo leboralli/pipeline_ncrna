@@ -15,7 +15,7 @@ lista = os.listdir(data)
 # print (lista)
 
 r = re.compile(r"^(R\d{4})")
-samples_lista = [x for x in lista if re.search(r, x)] #usando lambda
+samples_lista = [x for x in lista if re.split(r, x)] #usando lambda
 print (samples_lista)
 # print (samples_lista)
 # teste = []
