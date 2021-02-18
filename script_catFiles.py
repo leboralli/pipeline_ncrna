@@ -9,19 +9,11 @@ else:
     data = "/homelocal/boralli/workdir/data"
 
 #Extraindo apenas IDs
-# print ("Lista do diretorio:")
-
 lista = os.listdir(data)
-# print (lista)
 
 r = re.compile(r"^(R\d{4})")
 samples_lista = [x for x in lista if re.search(r, x)] #usando lambda
 # print (samples_lista)
-
-teste = samples_lista[0]
-print (teste)
-teste_2 = teste[:5]
-print (teste_2)
 
 IDs = []
 for i in samples_lista:
@@ -32,3 +24,7 @@ for i in samples_lista:
 print (IDs)
 unique = list(dict.fromkeys(IDs))
 print (unique)
+# for i in unique:
+#     recompile = re.compile(r'i')
+sample = [x for x in unique if re.search(unique,x)]
+print (sample)
