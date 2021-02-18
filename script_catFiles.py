@@ -9,12 +9,14 @@ else:
     data = "/homelocal/boralli/workdir/data"
 
 #Extraindo apenas IDs
-print ("Lista do diretorio:")
+# print ("Lista do diretorio:")
 
 lista = os.listdir(data)
-print (lista)
-# r = re.compile(r"^(R\d{4})")
-# samples_lista = list(filter(r.findall, lista))
+# print (lista)
+
+r = re.compile(r"^(R\d{4})")
+samples_lista = [x for x in lista if re.search(r, x)] #usando lambda
+print (samples_lista)
 # print (samples_lista)
 # teste = []
 # for i in lista:
