@@ -27,7 +27,7 @@ print (unique)
 listaunicos = []
 
 testelista = "R3375"
-for i in testelista   #unique: 
+for i in testelista:   #unique 
     itensUnicos = re.findall(str(i + '.*'), str(samples_lista))
     listaunicos.append(itensUnicos)
 
