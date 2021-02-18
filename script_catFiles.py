@@ -9,15 +9,17 @@ else:
     data = "/homelocal/boralli/workdir/data"
 
 lista = os.listdir(data)
-print (lista)
+# print (lista)
 r = re.compile(r"^R\d{4}")
-teste = []
-for i in lista:
-    print (i)
-    chars = i[0:3]
-    teste.append(chars.stripe())
+samples_lista = list(filter(r.match, lista))
+print (samples_lista)
+# teste = []
+# for i in lista:
+#     print (i)
+#
+#     teste.append(chars.stripe())
 
-print (teste)
-teste2 = list(filter(r.match, teste))
+# print (teste)
+# teste2 = list(filter(r.match, teste))
 
-print (teste2)
+# print (teste2)
