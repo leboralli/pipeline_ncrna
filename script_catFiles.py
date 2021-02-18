@@ -24,7 +24,8 @@ for i in samples_lista:
 print (IDs)
 unique = list(dict.fromkeys(IDs))
 print (unique)
-# for i in unique:
-#     recompile = re.compile(r'i')
-sample = [x for x in unique if re.search(unique,x)]
-print (sample)
+for i in unique:
+    recompile = re.compile(r + str(unique))
+    print (recompile)
+# sample = [x for x in unique if re.search(unique,x)]
+# print (sample)
