@@ -24,8 +24,11 @@ for i in samples_lista:
 # print (IDs)
 unique = list(dict.fromkeys(IDs))
 print (unique)
+listaunicos = []
 for i in unique:
     itensUnicos = re.match(i, str(samples_lista))
-    print (itensUnicos)
+    listaunicos.append(itensUnicos)
+
+print listaunicos
 # sample = [x for x in unique if re.search(unique,x)]
 # print (sample)
