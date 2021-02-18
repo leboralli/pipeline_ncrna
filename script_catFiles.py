@@ -21,11 +21,11 @@ for i in samples_lista:
     # print (sliced)
     IDs.append(sliced)
 
-print (IDs)
+# print (IDs)
 unique = list(dict.fromkeys(IDs))
 print (unique)
 for i in unique:
-    recompile = re.compile(r + str(unique))
-    print (recompile)
+    itensUnicos = re.search(i, samples_lista)
+    print (itensUnicos)
 # sample = [x for x in unique if re.search(unique,x)]
 # print (sample)
