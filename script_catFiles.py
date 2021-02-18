@@ -26,4 +26,7 @@ print (teste_2)
 IDs = []
 for i in samples_lista:
     sliced = i[:5]
-    print (sliced)
+    # print (sliced)
+    IDs.append(sliced)
+
+print (IDs)
