@@ -27,10 +27,10 @@ unique = list(dict.fromkeys(IDs))
 listaunicos = []
 
 testelista = "R3375"
-for i in testelista:   #unique
+for i in unique:   #unique
     itensUnicos = re.findall(str(i + '.*'), str(samples_lista))
     listaunicos.append(itensUnicos)
     # print (itensUnicos)
-# print (listaunicos)
+print (listaunicos)
 # sample = [x for x in unique if re.search(unique,x)]
 # print (sample)
