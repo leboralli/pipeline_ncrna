@@ -1,6 +1,6 @@
-
+export PYTHONPATH=.
 import os, re
-import config.py as CF
+import config.py 
 
 data = DATA_DIR
 lista = os.listdir(data)
