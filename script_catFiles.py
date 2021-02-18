@@ -31,6 +31,9 @@ for i in unique:   #unique
     itensUnicos = re.findall(str(i + '.*'), str(samples_lista))
     listaunicos.append(itensUnicos)
     # print (itensUnicos)
-print (listaunicos)
+# print (listaunicos)
 # sample = [x for x in unique if re.search(unique,x)]
 # print (sample)
+
+ttt = re.findall(str(R3375 + '.*'), str(samples_lista))
+print (ttt)
