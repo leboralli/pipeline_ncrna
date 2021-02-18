@@ -30,3 +30,5 @@ for i in samples_lista:
     IDs.append(sliced)
 
 print (IDs)
+unique = list(dict.fromkeys(IDs))
+print (unique)
