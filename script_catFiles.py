@@ -11,7 +11,7 @@ else:
 lista = os.listdir(data)
 # print (lista)
 r = re.compile(r"^R\d{4}")
-samples_lista = list(filter(r.match, lista))
+samples_lista = list(filter(r.findall, lista))
 print (samples_lista)
 # teste = []
 # for i in lista:
