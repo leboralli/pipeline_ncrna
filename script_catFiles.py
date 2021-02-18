@@ -25,7 +25,7 @@ for i in samples_lista:
 unique = list(dict.fromkeys(IDs))
 print (unique)
 for i in unique:
-    itensUnicos = re.search(i, str(samples_lista))
+    itensUnicos = re.match(i, str(samples_lista))
     print (itensUnicos)
 # sample = [x for x in unique if re.search(unique,x)]
 # print (sample)
