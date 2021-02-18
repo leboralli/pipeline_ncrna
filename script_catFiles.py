@@ -22,3 +22,8 @@ teste = samples_lista[0]
 print (teste)
 teste_2 = teste[:5]
 print (teste_2)
+
+IDs = []
+for i in samples_lista:
+    sliced = i[:5]
+    print (sliced)
