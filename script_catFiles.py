@@ -13,7 +13,7 @@ lista = os.listdir(data)
 
 r = re.compile(r"^(R\d{4})")
 samples_lista = [x for x in lista if re.search(r, x)] #usando lambda
-# print (samples_lista)
+print (len(samples_lista))
 
 IDs = []
 for i in samples_lista:
@@ -36,4 +36,4 @@ for i in unique:   #unique
 # print (sample)
 
 ttt = re.findall(str('R3375' + '.*'), str(samples_lista))
-print (ttt)
+print (len(ttt))
