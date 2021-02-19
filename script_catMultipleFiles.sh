@@ -8,10 +8,10 @@ fi
 IDs=$#
 echo "Numero de amostras = $IDs"
 
-for i in $IDs; do
+for i in $@; do
   echo "Amostra: $i"
   # for n in $(ls | grep $i | grep R1); do cat $i >> $i_allLanes_R1.fastq.gz; done
   # for n in $(ls | grep $i | grep R2); do cat $i >> $i_allLanes_R1.fastq.gz; done
   echo $i_allLanes_R1
-  echo $i_allLanes_R2   
+  echo $i_allLanes_R2
 done
