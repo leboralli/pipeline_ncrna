@@ -11,5 +11,5 @@ echo "Testando $1"
 echo "Numero de argumentos = $numero"
 
 for i in $numero; do
-  echo $if
+  echo $i
 done
