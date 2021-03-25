@@ -4,31 +4,19 @@ include:
 # print (SAMPLES_FP)
 rule all:
 	input:
-		# expand(SAMPLES_DIR + "{samples}", samples=SAMPLES), #fastq_dump
 		expand(FASTP_DIR + "{sample}R{read_no}.fastq",sample=SAMPLES ,read_no=['1', '2']), #fastp
 		IDX_DIR, #index
 		expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam",sample=SAMPLES_FP), #STAR
-		# # expand(STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam", sample=SAMPLES), #rm_star
-		# expand(SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf",sample=SAMPLES), #scallop
 		expand(STRINGTIE_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf", sample=SAMPLES_FP),
 		GTF_DIR + "path_samplesGTF.txt",
-		# # # TACO_DIR, #taco
 		STRINGTIE_OUT + "assembly.gtf", #STRINGTIE-MERGE
-		# # # "gffcompare_out_", #gffcompare
+		# "gffcompare_out_", #gffcompare
 		GTF_TO_FASTA + "assembly_fasta.fa", #gffread
 		FEELNC_FILTER + "candidate_lncrna.gtf", #FEELnc_filter
 		FEELNC_CODPOT, #feelnc_codpot
 		FEELNC_CLASSIFIER + "lncRNA_classes.txt", #feelnc_classifier
 		SALMON_DIR, #salmon_index
 		expand(SALMON_DIR + "/output/{sample}_quant", sample=SAMPLES_FP)
-
-# rule fastq_dump:
-# 	input:
-# 		samples = SAMPLES
-# 	output:
-# 		dir_out = SAMPLES_DIR + "{samples}"
-# 	shell:
-# 		"fastq-dump -I {input.samples} -o {output.dir_out}"
 
 rule fastp:
 	input:
@@ -89,27 +77,6 @@ rule star:
 		--genomeChrBinNbits 12")
 		#shell("find {params.star_dir} -type f ! -name '{params.star_sample}Aligned.sortedByCoord.out.bam' -delete")
 
-
-# rule rm_star:
-# 	input:
-# 		file = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-# 	# params:
-# 	# 	except_file = "{sample}Aligned.sortedByCoord.out.bam"
-# 	output:
-# 		file_to_maintain = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-# 	shell:
-# 		"rm !({input.file})"
-
-# rule scallop:
-# 	input:
-# 		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
-# 	output:
-# 		scallop_output = SCALLOP_DIR + "/{sample}/{sample}Aligned.sortedByCoord.out.gtf"
-# 	run:
-# 		shell("scallop -i {input.star_output} -o {output.scallop_output} \
-# 		--verbose 1 --min_transcript_lenght_base 200 \
-# 		--min_splice_bundary_hits 2 ")
-
 rule stringtie:
 	input:
 		star_output = STAR_DIR + "output/{sample}/{sample}Aligned.sortedByCoord.out.bam"
@@ -127,20 +94,6 @@ rule grep_gtf:
 	shell:
 		"find {input.list_gtf} | grep .gtf > {output.paths}"
 
-# #taco gera um problema na hora de rodar, pq provavelmente o snakemake tenta criar
-# #a pasta antes e o taco identifica como pasta já criada, talvez usar params
-# # rule taco:
-# # 	input:
-# # 		all_gtf = GTF_DIR + "path_samplesGTF.txt"
-# # 	output:
-# # 		taco_out = directory(TACO_DIR)
-# # 	params:
-# # 		taco_out = directory(TACO_DIR)
-# # 	shell:
-# # 		"taco_run -v -p 8  -o {params.taco_out} \
-# # 		--filter-min-expr 1 --gtf-expr-attr RPKM {input.all_gtf}"
-#
-# #Mudemos para o Stringtie-merge!
 rule stringtiemerge:
 	input:
 		samples_gtf = GTF_DIR + "path_samplesGTF.txt",

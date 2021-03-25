@@ -29,7 +29,7 @@ SCALLOP_DIR = PIPE + "SCALLOP"
 
 #Criando o diretorio do Stringtie, caso não exista
 if not os.path.exists(PIPE + 'STRINGTIE'):
-    os.makedirs(PIPE + 'STRINGTIE') 
+    os.makedirs(PIPE + 'STRINGTIE')
 
 STRINGTIE_DIR = PIPE + "STRINGTIE"
 GTF_DIR = PIPE + "GTF/"
